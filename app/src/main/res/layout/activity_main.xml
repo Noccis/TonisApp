@@ -7,33 +7,44 @@
     android:background="@color/greenbg"
     tools:context=".MainActivity">
 
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="179dp"
-        android:layout_height="187dp"
-        app:layout_constraintBottom_toTopOf="@+id/mainCardsPlace"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/one" />
-
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/mainCardsPlace"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="365dp" />
+        app:layout_constraintGuide_begin="911dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/hiLowPlace"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="438dp" />
+        app:layout_constraintGuide_begin="1046dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/playerCards"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="681dp" />
+        app:layout_constraintGuide_begin="1467dp" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/mainCardsPlace"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/one" />
+
+    <TextView
+        android:id="@+id/hiLowTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Lägg högre än"
+        android:textSize="48sp"
+        app:layout_constraintBottom_toTopOf="@+id/hiLowPlace"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 </androidx.constraintlayout.widget.ConstraintLayout>
