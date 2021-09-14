@@ -1,0 +1,2 @@
+rootProject.name = "TonisApp"
+include ':app'
