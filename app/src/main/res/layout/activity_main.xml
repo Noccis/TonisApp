@@ -7,44 +7,51 @@
     android:background="@color/greenbg"
     tools:context=".MainActivity">
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/mainCardsPlace"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_begin="911dp" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/hiLowPlace"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_begin="1046dp" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/playerCards"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_begin="1467dp" />
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/mainCardsPlace"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/one" />
 
     <TextView
         android:id="@+id/hiLowTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Lägg högre än"
-        android:textSize="48sp"
-        app:layout_constraintBottom_toTopOf="@+id/hiLowPlace"
+        android:textSize="34sp"
+        app:layout_constraintBottom_toTopOf="@+id/hiLowGuideline"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/playerCardGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="668dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/hiLowGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="472dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/mainNrGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="365dp" />
+
+    <ImageView
+        android:id="@+id/mainNrView"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:background="@drawable/roundedcorner"
+        android:paddingLeft="10dp"
+        android:paddingTop="10dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/mainNrGuideline"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:srcCompat="@drawable/blank" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

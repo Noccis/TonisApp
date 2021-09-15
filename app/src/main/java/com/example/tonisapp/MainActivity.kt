@@ -6,9 +6,12 @@ import android.view.View
 import android.widget.ImageView
 
 class MainActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        var mainNr: ImageView = findViewById(R.id.mainNrView)
+        mainNr.setElevation(15F)
     }
 }
