@@ -12,6 +12,10 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         var mainNr: ImageView = findViewById(R.id.mainNrView)
-        mainNr.setElevation(15F)
+
     }
+}
+
+fun randomMainNr () {
+
 }
