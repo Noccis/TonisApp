@@ -51,7 +51,13 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         mainNrView = findViewById(R.id.mainNrView)
-       // mainNrView.setImageResource(R.drawable. din bild)
+       // mainNrView.setImageResource(card1.imageId)    Sätter mainNr bilden till det id som är på card1.
+        mainNrView.setImageResource(setImage(listOfcards))
+
+        var testingFunctions = setImage(listOfcards)
+
+
+        Log.d("Dodo", "$testingFunctions")
 
         scoreTextView = findViewById(R.id.scoreView)
         hiOrLowTextView = findViewById(R.id.hiLowTextView)
@@ -64,6 +70,22 @@ class MainActivity : AppCompatActivity() {
 }
 
 fun randomMainNr ():Int {
-
-    return (2..9).random()
+    val temp = (2..9).random()
+    // return (2..9).random()
+    Log.d("Dodo", "$temp")
+    return temp                     // städa denna sen så det bara står det som är bortkommenterat.
 }
+
+fun setImage (cardList: MutableList<Card>): Int{
+    val cardId = cardList [randomMainNr()-1].imageId
+    return cardId
+}
+
+/*  Fixa en random som sätter nummret i mainNr                                      x
+    Fixa så att högre eller lägre än visas random på skärmen
+    Fixa så att player cards visar ett rätt och ett fel svar, rätt svar ska även sparas som int.
+    Fixa så att score ökas om man svarar rätt, eller minskas om man svarar fel.
+    Fixa så att mainNr laddas om när man svarat rätt.
+
+
+ */
