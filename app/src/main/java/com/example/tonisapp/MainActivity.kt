@@ -1,10 +1,8 @@
 package com.example.tonisapp
 
-import android.media.ImageReader
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 
@@ -28,7 +26,6 @@ class MainActivity : AppCompatActivity() {
     val listOfcards = mutableListOf<Card>(card1, card2, card3, card4, card5, card6, card7, card8, card9, card10)
 
     // Int variabler:
-
     var mainNr = 0
     var hiOrLow = 0
     var rightNr = 0
@@ -50,42 +47,98 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        // mainNrView.setImageResource(card1.imageId)    Sätter mainNr bilden till det id som är på card1.
+
+        // Binder ihop mina view variabler med mina views.
         mainNrView = findViewById(R.id.mainNrView)
-       // mainNrView.setImageResource(card1.imageId)    Sätter mainNr bilden till det id som är på card1.
-        mainNrView.setImageResource(setImage(listOfcards))
-
-        var testingFunctions = setImage(listOfcards)
-
-
-        Log.d("Dodo", "$testingFunctions")
-
         scoreTextView = findViewById(R.id.scoreView)
         hiOrLowTextView = findViewById(R.id.hiLowTextView)
         playerCard1View = findViewById(R.id.playerCard1)
         playerCard2View = findViewById(R.id.playerCard2)
 
 
+        mainNrView.setImageResource(setImage(listOfcards))      //Skapar random siffra/kort i mainNr
+
+        hiOrLowTextView.text = hiOrLow()                        //Bestämmer om man ska lägga högre eller lägre.
+
+        // Ring playercard funktionen här
+        playerCard1View.setImageResource(playerCardsRightNr(listOfcards))
+
+
+
+
+
 
     }
+
+    // Main Nr funktioner:
+    fun randomMainNr ():Int {
+
+        mainNr = (2..9).random()
+        return mainNr
+        Log.d("nummer", "Main nr är $mainNr")
+    }
+
+    fun setImage(cardList: MutableList<Card>): Int {
+
+        return cardList[randomMainNr() - 1].imageId
+    }
+
+
+
+    // Hi Low funktioner:
+
+    fun hiOrLow():String {
+
+        hiOrLow = random1or2()
+        val string: String
+        if (hiOrLow == 1) {
+
+            string = "Lägg lägre än"                                                                    // Fixa så den pekar på strängen i XML filen
+            Log.d("Dodo", "Lägre")
+        }
+        else {
+            string = "Lägg högre än"                                                                    // Fixa så den pekar på strängen i XML filen
+            Log.d("Dodo", "Högre")
+        }
+        return string
+    }
+
+    // Player card funktioner:
+
+    fun playerCardsRightNr(cardList: MutableList<Card>): Int {
+
+        if (hiOrLow == 1) {
+
+            rightNr = (1..mainNr).random()
+           // wrongNr = (mainNr..10).random()
+        }
+        else if (hiOrLow == 2) {
+
+            rightNr = (mainNr..10).random()
+          //  wrongNr = (1..mainNr).random()
+        }
+        return cardList[rightNr - 1].imageId
+        Log.d("nummer", "$rightNr")
+    }
+
+    // Övriga funktioner:
+
+    fun random1or2():Int {
+        return (1..2).random()
+    }
+
 }
 
-fun randomMainNr ():Int {
-    val temp = (2..9).random()
-    // return (2..9).random()
-    Log.d("Dodo", "$temp")
-    return temp                     // städa denna sen så det bara står det som är bortkommenterat.
-}
 
-fun setImage (cardList: MutableList<Card>): Int{
-    val cardId = cardList [randomMainNr()-1].imageId
-    return cardId
-}
 
-/*  Fixa en random som sätter nummret i mainNr                                      x
-    Fixa så att högre eller lägre än visas random på skärmen
+/*  Fixa en random som sätter nummret i mainNr                                                       x
+    Fixa så att högre eller lägre än visas random på skärmen                                         x
     Fixa så att player cards visar ett rätt och ett fel svar, rätt svar ska även sparas som int.
     Fixa så att score ökas om man svarar rätt, eller minskas om man svarar fel.
     Fixa så att mainNr laddas om när man svarat rätt.
+    Fixa så att strängarna i hiOrLow func refererar till strings-xml
+    Städa bort alla kontroller.
 
 
  */
