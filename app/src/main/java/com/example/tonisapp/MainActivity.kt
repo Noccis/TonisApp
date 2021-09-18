@@ -3,6 +3,7 @@ package com.example.tonisapp
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 
@@ -30,6 +31,7 @@ class MainActivity : AppCompatActivity() {
     var hiOrLow = 0
     var rightNr = 0
     var wrongNr = 0
+    var score = 0
 
     // View variabler:
     lateinit var mainNrView: ImageView
@@ -37,11 +39,8 @@ class MainActivity : AppCompatActivity() {
     lateinit var hiOrLowTextView: TextView
     lateinit var playerCard1View: ImageView
     lateinit var playerCard2View: ImageView
-    //Vi väntar med dessa för att inte krångla till det.
-    // lateinit var lowerView: ImageView
-    // lateinit var higherView: ImageView
-
-
+    lateinit var lowerView: TextView
+    lateinit var higherView: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,14 +54,23 @@ class MainActivity : AppCompatActivity() {
         hiOrLowTextView = findViewById(R.id.hiLowTextView)
         playerCard1View = findViewById(R.id.playerCard1)
         playerCard2View = findViewById(R.id.playerCard2)
+        lowerView = findViewById(R.id.lowerView)
+        higherView = findViewById(R.id.higherView)
 
+        lowerView.visibility = View.INVISIBLE
+        higherView.visibility = View.GONE
+
+
+        scoreTextView.text = "$score"
 
         mainNrView.setImageResource(setImage(listOfcards))      //Skapar random siffra/kort i mainNr
 
         hiOrLowTextView.text = hiOrLow()                        //Bestämmer om man ska lägga högre eller lägre.
 
+        Log.d("Dodo", "$mainNr")
+
         // Ring playercard funktionen här
-        playerCard1View.setImageResource(playerCardsRightNr(listOfcards))
+         randomPlayerCard(listOfcards)
 
 
 
@@ -95,18 +103,21 @@ class MainActivity : AppCompatActivity() {
         if (hiOrLow == 1) {
 
             string = "Lägg lägre än"                                                                    // Fixa så den pekar på strängen i XML filen
-            Log.d("Dodo", "Lägre")
+            lowerView.visibility = View.VISIBLE
+        }
+        else  if (hiOrLow == 2){
+            string = "Lägg högre än"                                                                    // Fixa så den pekar på strängen i XML filen
+            higherView.visibility = View.VISIBLE
         }
         else {
-            string = "Lägg högre än"                                                                    // Fixa så den pekar på strängen i XML filen
-            Log.d("Dodo", "Högre")
+            string = "Error"
         }
         return string
     }
 
     // Player card funktioner:
 
-    fun playerCardsRightNr(cardList: MutableList<Card>): Int {
+   /* fun playerCardsRightNr(cardList: MutableList<Card>): Int {
 
         if (hiOrLow == 1) {
 
@@ -122,6 +133,36 @@ class MainActivity : AppCompatActivity() {
         Log.d("nummer", "$rightNr")
     }
 
+    */
+
+    fun randomPlayerCard(cardList: MutableList<Card>) {
+        val placement = random1or2()                    // Skapar variabel för vänter eller höger
+        Log.d("nummer", "$placement")
+
+        if (hiOrLow == 1) {
+
+            rightNr = (1..mainNr -1).random()
+            wrongNr = (mainNr -1..10).random()
+
+            Log.d("nummer", "Rätt nr: $rightNr, fel nr: $wrongNr ")
+        }
+        else if (hiOrLow == 2) {                        // Här någonstans blir det fel.
+
+            rightNr = (mainNr -1..10).random()
+            wrongNr = (1..mainNr-1).random()
+            Log.d("nummer", "Rätt nr: $rightNr, fel nr: $wrongNr ")
+        }
+
+        if(placement == 1) {
+            playerCard1View.setImageResource(cardList[rightNr -1].imageId)
+            playerCard2View.setImageResource(cardList[wrongNr -1].imageId)
+        }
+        else if (placement == 2){
+            playerCard1View.setImageResource(cardList[wrongNr -1].imageId)
+            playerCard2View.setImageResource(cardList[rightNr -1].imageId)
+        }
+    }
+
     // Övriga funktioner:
 
     fun random1or2():Int {
@@ -134,7 +175,9 @@ class MainActivity : AppCompatActivity() {
 
 /*  Fixa en random som sätter nummret i mainNr                                                       x
     Fixa så att högre eller lägre än visas random på skärmen                                         x
-    Fixa så att player cards visar ett rätt och ett fel svar, rätt svar ska även sparas som int.
+    Fixa så att player cards visar ett rätt och ett fel svar, rätt svar ska även sparas som int.     x
+    Fixa så att en ruta dyker upp bredvid mainNrView.
+    Kolla varför right och wrong Nr spårade ur helt plötsligt.... Efter jag lagt till lower och higher view.
     Fixa så att score ökas om man svarar rätt, eller minskas om man svarar fel.
     Fixa så att mainNr laddas om när man svarat rätt.
     Fixa så att strängarna i hiOrLow func refererar till strings-xml
