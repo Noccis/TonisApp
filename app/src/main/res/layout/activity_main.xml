@@ -106,7 +106,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:barrierDirection="left"
-        app:constraint_referenced_ids="playerCard2" />
+        app:constraint_referenced_ids="playerCard2"
+        tools:layout_editor_absoluteX="241dp" />
 
     <TextView
         android:id="@+id/scoreView"
@@ -121,32 +122,45 @@
         app:layout_constraintBottom_toTopOf="@+id/scoreGuideline"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <TextView
+
+
+    <ImageView
         android:id="@+id/lowerView"
         android:layout_width="110dp"
         android:layout_height="110dp"
         android:background="@drawable/faded"
-        android:elevation="15dp"
         android:paddingLeft="10dp"
         android:paddingTop="10dp"
         android:paddingRight="10dp"
         android:paddingBottom="10dp"
+        android:elevation="15dp"
         app:layout_constraintBottom_toTopOf="@+id/mainNrGuideline"
         app:layout_constraintEnd_toStartOf="@+id/mainNrView"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <TextView
+    <ImageView
         android:id="@+id/higherView"
         android:layout_width="110dp"
         android:layout_height="110dp"
         android:background="@drawable/faded"
-        android:elevation="15dp"
         android:paddingLeft="10dp"
         android:paddingTop="10dp"
         android:paddingRight="10dp"
         android:paddingBottom="10dp"
+        android:elevation="15dp"
         app:layout_constraintBottom_toTopOf="@+id/mainNrGuideline"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/mainNrView" />
+        app:layout_constraintStart_toEndOf="@+id/mainNrView"  />
+
+    <ImageView
+        android:id="@+id/testImageView"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/eight" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

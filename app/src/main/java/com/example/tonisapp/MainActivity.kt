@@ -32,7 +32,8 @@ class MainActivity : AppCompatActivity() {
     var rightNr = 0
     var wrongNr = 0
     var score = 0
-    var rightAnswerCard = 0
+    var rightAnswerCard = 0     // Håller reda på vilket kort som är rätt
+    var rightAnswerImageId = 0  // Sparar imageId för rätta svaret för att återanvända kortet
 
 
     // View variabler:
@@ -41,8 +42,10 @@ class MainActivity : AppCompatActivity() {
     lateinit var hiOrLowTextView: TextView
     lateinit var playerCard1View: ImageView
     lateinit var playerCard2View: ImageView
-    lateinit var lowerView: TextView
-    lateinit var higherView: TextView
+    lateinit var lowerView: ImageView
+    lateinit var higherView: ImageView
+
+    lateinit var testView: ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -67,12 +70,21 @@ class MainActivity : AppCompatActivity() {
 
         mainNrView.setImageResource(setImage(listOfcards))      //Skapar random siffra/kort i mainNr
 
+        /* testar att nya imageView lower higher funkar
+        lowerView.setImageResource(R.drawable.one)
+        higherView.setImageResource(R.drawable.ten)
+
+         */
+
         hiOrLowTextView.text = hiOrLow()                        //Bestämmer om man ska lägga högre eller lägre.
 
         Log.d("nummer", "$mainNr")
 
         // Ring playercard funktionen här
          randomPlayerCard(listOfcards)
+
+        //testView = findViewById(R.id.testImageView)
+        //testView.setBackgroundResource(R.drawable.roundedcorner)
 
 
 
@@ -146,6 +158,8 @@ class MainActivity : AppCompatActivity() {
             playerCard1View.setImageResource(cardList[rightNr -1].imageId)
             playerCard2View.setImageResource(cardList[wrongNr -1].imageId)
 
+            rightAnswerImageId = cardList[rightNr -1].imageId       // Sparar imageId för senare använding
+
             rightAnswerCard = 1
 
             Log.d("nummer", "rätt kort imageId: ${cardList[rightNr -1].imageId}")
@@ -154,6 +168,8 @@ class MainActivity : AppCompatActivity() {
         else if (placement == 2){
             playerCard1View.setImageResource(cardList[wrongNr -1].imageId)
             playerCard2View.setImageResource(cardList[rightNr -1].imageId)
+
+            rightAnswerImageId = cardList[rightNr -1].imageId       // Sparar imageId för senare använding
 
             rightAnswerCard = 2
             Log.d("nummer", "rätt kort imageId: ${cardList[rightNr -1].imageId}")
@@ -172,13 +188,18 @@ class MainActivity : AppCompatActivity() {
             view.visibility = View.GONE
             playerCard2View.visibility = View.GONE
 
-          /*  if (hiOrLow == 1 ) {
+            if (hiOrLow == 1 ) {
 
-               Här ska funktionen för om ens svarkort ska visas till vänster eller höger vara.
+                lowerView.setImageResource(rightAnswerImageId)
+                lowerView.setBackgroundResource(R.drawable.roundedcorner)
 
             }
+            else if (hiOrLow == 2) {
 
-           */
+                higherView.setImageResource(rightAnswerImageId)
+                higherView.setBackgroundResource(R.drawable.roundedcorner)
+            }
+
 
 
             // Lägg in så att det antingen:
@@ -206,6 +227,19 @@ class MainActivity : AppCompatActivity() {
 
                 view.visibility = View.GONE
                 playerCard1View.visibility = View.GONE
+
+                if (hiOrLow == 1 ) {
+
+                    lowerView.setImageResource(rightAnswerImageId)
+                    lowerView.setBackgroundResource(R.drawable.roundedcorner)
+
+                }
+                else if (hiOrLow == 2) {
+
+                    higherView.setImageResource(rightAnswerImageId)
+                    higherView.setBackgroundResource(R.drawable.roundedcorner)
+
+                }
 
                 // Lägg in så att det antingen:
                 // Allting reloadas
@@ -240,9 +274,9 @@ class MainActivity : AppCompatActivity() {
     Kolla varför right och wrong Nr spårade ur helt plötsligt. Efter jag lagt till lower och higher view.    x
     Fixa så att score ökas om man svarar rätt, eller minskas om man svarar fel.                      x
     Fixa så alla kort försvinner om man svarar rätt.                                                 x
-    Gör om lowerVIew och higherView så dom är ImageViews..
-    Fixa så att rätt svar hamnar bredvid MainNr om man svarar rätt.
-    Fixa så att mainNr laddas om när man svarat rätt.
+    Gör om lowerVIew och higherView så dom är ImageViews..                                           x
+    Fixa så att rätt svar hamnar bredvid MainNr om man svarar rätt.                                  x
+    Fundera på hur ladda om mainNr och alla andra variabler utan att röra score.
     Fixa så att strängarna i hiOrLow func refererar till strings-xml
     Städa bort alla kontroller.
 
