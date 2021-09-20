@@ -32,6 +32,8 @@ class MainActivity : AppCompatActivity() {
     var rightNr = 0
     var wrongNr = 0
     var score = 0
+    var rightAnswerCard = 0
+
 
     // View variabler:
     lateinit var mainNrView: ImageView
@@ -67,7 +69,7 @@ class MainActivity : AppCompatActivity() {
 
         hiOrLowTextView.text = hiOrLow()                        //Bestämmer om man ska lägga högre eller lägre.
 
-        Log.d("Dodo", "$mainNr")
+        Log.d("nummer", "$mainNr")
 
         // Ring playercard funktionen här
          randomPlayerCard(listOfcards)
@@ -84,7 +86,7 @@ class MainActivity : AppCompatActivity() {
 
         mainNr = (2..9).random()
         return mainNr
-        Log.d("nummer", "Main nr är $mainNr")
+       // Log.d("nummer", "Main nr är $mainNr")
     }
 
     fun setImage(cardList: MutableList<Card>): Int {
@@ -117,50 +119,97 @@ class MainActivity : AppCompatActivity() {
 
     // Player card funktioner:
 
-   /* fun playerCardsRightNr(cardList: MutableList<Card>): Int {
-
-        if (hiOrLow == 1) {
-
-            rightNr = (1..mainNr).random()
-           // wrongNr = (mainNr..10).random()
-        }
-        else if (hiOrLow == 2) {
-
-            rightNr = (mainNr..10).random()
-          //  wrongNr = (1..mainNr).random()
-        }
-        return cardList[rightNr - 1].imageId
-        Log.d("nummer", "$rightNr")
-    }
-
-    */
 
     fun randomPlayerCard(cardList: MutableList<Card>) {
         val placement = random1or2()                    // Skapar variabel för vänter eller höger
-        Log.d("nummer", "$placement")
+        Log.d("nummer", "1 är vänster 2 är höger: $placement")
+        val lowerNr = mainNr -1     // Skapade dessa variabler då något blev fel när jag skrev mmain -1
+        val higherNr = mainNr +1
 
         if (hiOrLow == 1) {
 
-            rightNr = (1..mainNr -1).random()
-            wrongNr = (mainNr -1..10).random()
+            rightNr = (1..lowerNr).random()
+            wrongNr = (higherNr..10).random()
 
-            Log.d("nummer", "Rätt nr: $rightNr, fel nr: $wrongNr ")
+            Log.d("nummer", "Rätt nr: $rightNr, fel nr: $wrongNr main nr:$mainNr ")
+            Log.d("nummer", "lower nr: $lowerNr higher nr: $higherNr")
         }
-        else if (hiOrLow == 2) {                        // Här någonstans blir det fel.
+        else if (hiOrLow == 2) {
 
-            rightNr = (mainNr -1..10).random()
-            wrongNr = (1..mainNr-1).random()
-            Log.d("nummer", "Rätt nr: $rightNr, fel nr: $wrongNr ")
+            rightNr = (higherNr..10).random()
+            wrongNr = (1..lowerNr).random()
+            Log.d("nummer", "Rätt nr: $rightNr, fel nr: $wrongNr main nr:$mainNr ")
+            Log.d("nummer", "lower nr: $lowerNr higher nr: $higherNr")
         }
 
         if(placement == 1) {
             playerCard1View.setImageResource(cardList[rightNr -1].imageId)
             playerCard2View.setImageResource(cardList[wrongNr -1].imageId)
+
+            rightAnswerCard = 1
+
+            Log.d("nummer", "rätt kort imageId: ${cardList[rightNr -1].imageId}")
+
         }
         else if (placement == 2){
             playerCard1View.setImageResource(cardList[wrongNr -1].imageId)
             playerCard2View.setImageResource(cardList[rightNr -1].imageId)
+
+            rightAnswerCard = 2
+            Log.d("nummer", "rätt kort imageId: ${cardList[rightNr -1].imageId}")
+
         }
+    }
+
+    // Svar funktioner:
+
+    fun answeringCard1(view: View) {
+
+        if (rightAnswerCard == 1) {
+            score ++
+            scoreTextView.text = "$score"
+
+            view.visibility = View.GONE
+
+
+            // Lägg in så att det antingen:
+            // Allting reloadas
+            // Laddas till nästa nivå
+            // OCH låter eller blinkar till att det är rätt.
+        }
+        else if (score > 0) {
+            score --
+            scoreTextView.text = "$score"       // Varför uppdateras inte detta automatiskt?
+
+            view.visibility = View.GONE
+        }
+
+        view.visibility = View.GONE
+    }
+
+    fun answeringCard2(view: View) {
+
+
+            if (rightAnswerCard == 2) {
+                score ++
+                scoreTextView.text = "$score"
+
+                view.visibility = View.GONE
+
+                // Lägg in så att det antingen:
+                // Allting reloadas
+                // Laddas till nästa nivå
+                // OCH låter eller blinkar till att det är rätt.
+            }
+            else if (score > 0){
+                score --
+                scoreTextView.text = "$score"       // Varför uppdateras inte detta automatiskt?
+
+                view.visibility = View.GONE
+            }
+        view.visibility = View.GONE
+
+
     }
 
     // Övriga funktioner:
@@ -176,8 +225,8 @@ class MainActivity : AppCompatActivity() {
 /*  Fixa en random som sätter nummret i mainNr                                                       x
     Fixa så att högre eller lägre än visas random på skärmen                                         x
     Fixa så att player cards visar ett rätt och ett fel svar, rätt svar ska även sparas som int.     x
-    Fixa så att en ruta dyker upp bredvid mainNrView.
-    Kolla varför right och wrong Nr spårade ur helt plötsligt.... Efter jag lagt till lower och higher view.
+    Fixa så att en ruta dyker upp bredvid mainNrView.                                                x
+    Kolla varför right och wrong Nr spårade ur helt plötsligt. Efter jag lagt till lower och higher view.    x
     Fixa så att score ökas om man svarar rätt, eller minskas om man svarar fel.
     Fixa så att mainNr laddas om när man svarat rätt.
     Fixa så att strängarna i hiOrLow func refererar till strings-xml
