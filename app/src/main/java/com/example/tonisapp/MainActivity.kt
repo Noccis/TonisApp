@@ -170,6 +170,15 @@ class MainActivity : AppCompatActivity() {
             scoreTextView.text = "$score"
 
             view.visibility = View.GONE
+            playerCard2View.visibility = View.GONE
+
+          /*  if (hiOrLow == 1 ) {
+
+               Här ska funktionen för om ens svarkort ska visas till vänster eller höger vara.
+
+            }
+
+           */
 
 
             // Lägg in så att det antingen:
@@ -185,6 +194,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         view.visibility = View.GONE
+
     }
 
     fun answeringCard2(view: View) {
@@ -195,6 +205,7 @@ class MainActivity : AppCompatActivity() {
                 scoreTextView.text = "$score"
 
                 view.visibility = View.GONE
+                playerCard1View.visibility = View.GONE
 
                 // Lägg in så att det antingen:
                 // Allting reloadas
@@ -205,10 +216,10 @@ class MainActivity : AppCompatActivity() {
                 score --
                 scoreTextView.text = "$score"       // Varför uppdateras inte detta automatiskt?
 
-                view.visibility = View.GONE
-            }
-        view.visibility = View.GONE
 
+            }
+
+        view.visibility = View.GONE
 
     }
 
@@ -227,7 +238,10 @@ class MainActivity : AppCompatActivity() {
     Fixa så att player cards visar ett rätt och ett fel svar, rätt svar ska även sparas som int.     x
     Fixa så att en ruta dyker upp bredvid mainNrView.                                                x
     Kolla varför right och wrong Nr spårade ur helt plötsligt. Efter jag lagt till lower och higher view.    x
-    Fixa så att score ökas om man svarar rätt, eller minskas om man svarar fel.
+    Fixa så att score ökas om man svarar rätt, eller minskas om man svarar fel.                      x
+    Fixa så alla kort försvinner om man svarar rätt.                                                 x
+    Gör om lowerVIew och higherView så dom är ImageViews..
+    Fixa så att rätt svar hamnar bredvid MainNr om man svarar rätt.
     Fixa så att mainNr laddas om när man svarat rätt.
     Fixa så att strängarna i hiOrLow func refererar till strings-xml
     Städa bort alla kontroller.
