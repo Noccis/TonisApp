@@ -270,8 +270,10 @@ class MainActivity : AppCompatActivity() {
 
         lowerView.visibility = View.GONE
         lowerView.setImageResource(R.drawable.blankbgcolor)
+        lowerView.setBackgroundResource(R.drawable.faded)
         higherView.visibility = View.GONE
         higherView.setImageResource(R.drawable.blankbgcolor)
+        higherView.setBackgroundResource(R.drawable.faded)
 
         playerCard1View.visibility = View.VISIBLE
         playerCard2View.visibility = View.VISIBLE
@@ -300,9 +302,11 @@ class MainActivity : AppCompatActivity() {
     Gör om lowerVIew och higherView så dom är ImageViews..                                           x
     Fixa så att rätt svar hamnar bredvid MainNr om man svarar rätt.                                  x
     Fundera på hur ladda om mainNr och alla andra variabler utan att röra score.                     x
-    fixa så lower och higher View byter bg vid reset (blir vitt ibland istället för bakgrundsfärg)
+    fixa så lower och higher View byter bg vid reset (blir vitt ibland istället för bakgrundsfärg)   x
     Fixa så att strängarna i hiOrLow func refererar till strings-xml
+    Gör en ny aktivitet för nästa lvl och lägg in så denna aktivitet byter aktivitet vid 10p.
     Städa bort alla kontroller.
+    Lägg till ljud vid rätt och fel svar.
 
 fel nr visas ej
 low och high visar gamla rätt svar
