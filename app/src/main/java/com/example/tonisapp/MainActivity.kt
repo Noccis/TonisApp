@@ -2,6 +2,7 @@ package com.example.tonisapp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import android.view.View
 import android.widget.ImageView
@@ -45,7 +46,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var lowerView: ImageView
     lateinit var higherView: ImageView
 
-    lateinit var testView: ImageView
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -62,7 +63,7 @@ class MainActivity : AppCompatActivity() {
         lowerView = findViewById(R.id.lowerView)
         higherView = findViewById(R.id.higherView)
 
-        lowerView.visibility = View.INVISIBLE
+        lowerView.visibility = View.GONE
         higherView.visibility = View.GONE
 
 
@@ -70,11 +71,6 @@ class MainActivity : AppCompatActivity() {
 
         mainNrView.setImageResource(setImage(listOfcards))      //Skapar random siffra/kort i mainNr
 
-        /* testar att nya imageView lower higher funkar
-        lowerView.setImageResource(R.drawable.one)
-        higherView.setImageResource(R.drawable.ten)
-
-         */
 
         hiOrLowTextView.text = hiOrLow()                        //Bestämmer om man ska lägga högre eller lägre.
 
@@ -82,13 +78,6 @@ class MainActivity : AppCompatActivity() {
 
         // Ring playercard funktionen här
          randomPlayerCard(listOfcards)
-
-        //testView = findViewById(R.id.testImageView)
-        //testView.setBackgroundResource(R.drawable.roundedcorner)
-
-
-
-
 
 
     }
@@ -185,8 +174,10 @@ class MainActivity : AppCompatActivity() {
             score ++
             scoreTextView.text = "$score"
 
-            view.visibility = View.GONE
-            playerCard2View.visibility = View.GONE
+            view.visibility = View.INVISIBLE
+            playerCard2View.visibility = View.INVISIBLE
+
+
 
             if (hiOrLow == 1 ) {
 
@@ -200,6 +191,8 @@ class MainActivity : AppCompatActivity() {
                 higherView.setBackgroundResource(R.drawable.roundedcorner)
             }
 
+            reset()
+
 
 
             // Lägg in så att det antingen:
@@ -211,10 +204,13 @@ class MainActivity : AppCompatActivity() {
             score --
             scoreTextView.text = "$score"       // Varför uppdateras inte detta automatiskt?
 
-            view.visibility = View.GONE
+            view.visibility = View.INVISIBLE
+        }
+        else {
+            view.visibility = View.INVISIBLE
         }
 
-        view.visibility = View.GONE
+        // view.visibility = View.INVISIBLE // testar att ta bort denna för reset
 
     }
 
@@ -228,6 +224,8 @@ class MainActivity : AppCompatActivity() {
                 view.visibility = View.GONE
                 playerCard1View.visibility = View.GONE
 
+
+
                 if (hiOrLow == 1 ) {
 
                     lowerView.setImageResource(rightAnswerImageId)
@@ -240,6 +238,7 @@ class MainActivity : AppCompatActivity() {
                     higherView.setBackgroundResource(R.drawable.roundedcorner)
 
                 }
+                reset()
 
                 // Lägg in så att det antingen:
                 // Allting reloadas
@@ -252,8 +251,12 @@ class MainActivity : AppCompatActivity() {
 
 
             }
+            else {
 
-        view.visibility = View.GONE
+                view.visibility = View.INVISIBLE
+            }
+
+        // view.visibility = View.INVISIBLE // testar att ta bort denna för reset
 
     }
 
@@ -261,6 +264,26 @@ class MainActivity : AppCompatActivity() {
 
     fun random1or2():Int {
         return (1..2).random()
+    }
+
+    fun reset() {
+
+        lowerView.visibility = View.GONE
+        lowerView.setImageResource(R.drawable.blankbgcolor)
+        higherView.visibility = View.GONE
+        higherView.setImageResource(R.drawable.blankbgcolor)
+
+        playerCard1View.visibility = View.VISIBLE
+        playerCard2View.visibility = View.VISIBLE
+
+        mainNrView.setImageResource(setImage(listOfcards))
+
+        hiOrLowTextView.text = hiOrLow()                        //Bestämmer om man ska lägga högre eller lägre.
+
+        Log.d("nummer", "$mainNr")
+
+        randomPlayerCard(listOfcards)
+
     }
 
 }
@@ -276,9 +299,12 @@ class MainActivity : AppCompatActivity() {
     Fixa så alla kort försvinner om man svarar rätt.                                                 x
     Gör om lowerVIew och higherView så dom är ImageViews..                                           x
     Fixa så att rätt svar hamnar bredvid MainNr om man svarar rätt.                                  x
-    Fundera på hur ladda om mainNr och alla andra variabler utan att röra score.
+    Fundera på hur ladda om mainNr och alla andra variabler utan att röra score.                     x
+    fixa så lower och higher View byter bg vid reset (blir vitt ibland istället för bakgrundsfärg)
     Fixa så att strängarna i hiOrLow func refererar till strings-xml
     Städa bort alla kontroller.
 
+fel nr visas ej
+low och high visar gamla rätt svar
 
  */
