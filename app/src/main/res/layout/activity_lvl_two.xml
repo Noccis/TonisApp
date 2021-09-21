@@ -70,9 +70,9 @@
 
     <ImageView
         android:id="@+id/playerCard1"
-        android:layout_width="110dp"
-        android:layout_height="110dp"
-        android:layout_marginStart="32dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="16dp"
         android:background="@drawable/roundedcorner"
         android:elevation="15dp"
         android:onClick="answeringCard1"
@@ -86,12 +86,12 @@
 
     <ImageView
         android:id="@+id/playerCard3"
-        android:layout_width="110dp"
-        android:layout_height="110dp"
-        android:layout_marginEnd="32dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginEnd="16dp"
         android:background="@drawable/roundedcorner"
         android:elevation="15dp"
-        android:onClick="answeringCard2"
+        android:onClick="answeringCard3"
         android:paddingLeft="10dp"
         android:paddingTop="10dp"
         android:paddingRight="10dp"
@@ -152,17 +152,18 @@
 
     <ImageView
         android:id="@+id/playerCard2"
-        android:layout_width="110dp"
-        android:layout_height="110dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:background="@drawable/roundedcorner"
         android:elevation="15dp"
-        android:onClick="answeringCard1"
+        android:onClick="answeringCard2"
         android:paddingLeft="10dp"
         android:paddingTop="10dp"
         android:paddingRight="10dp"
         android:paddingBottom="10dp"
         app:layout_constraintBottom_toTopOf="@+id/playerCardGuideline"
         app:layout_constraintEnd_toStartOf="@+id/playerCard3"
+        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toEndOf="@+id/playerCard1"
         app:srcCompat="@drawable/blank" />
 

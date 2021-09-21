@@ -33,6 +33,7 @@ class LvlTwoActivity : AppCompatActivity() {
     var hiOrLow = 0
     var rightNr = 0
     var wrongNr = 0
+    var wrongNr2 = 0    // Extra fel nr för extra playerCard
     var score = 0
     var rightAnswerCard = 0     // Håller reda på vilket kort som är rätt
     var rightAnswerImageId = 0  // Sparar imageId för rätta svaret för att återanvända kortet
@@ -79,7 +80,7 @@ class LvlTwoActivity : AppCompatActivity() {
         hiOrLowTextView.text =
             hiOrLow()                        //Bestämmer om man ska lägga högre eller lägre.
 
-        Log.d("nummer", "$mainNr")
+
 
         // Genererar rätt och fel svar till random playerCard
         randomPlayerCard(listOfcards)
@@ -126,7 +127,7 @@ class LvlTwoActivity : AppCompatActivity() {
 
 
     fun randomPlayerCard(cardList: MutableList<Card>) {
-        val placement = random1or2()
+        val placement = (1..3).random()
 
         val lowerNr =
             mainNr - 1     // Skapade dessa variabler då något blev fel när jag skrev mmain -1
@@ -136,17 +137,20 @@ class LvlTwoActivity : AppCompatActivity() {
 
             rightNr = (1..lowerNr).random()
             wrongNr = (higherNr..10).random()
+            wrongNr2 = (higherNr..10).random()
 
         } else if (hiOrLow == 2) {
 
             rightNr = (higherNr..10).random()
             wrongNr = (1..lowerNr).random()
+            wrongNr2 = (1..lowerNr).random()
 
         }
 
         if (placement == 1) {
             playerCard1View.setImageResource(cardList[rightNr - 1].imageId)
             playerCard2View.setImageResource(cardList[wrongNr - 1].imageId)
+            playerCard3View.setImageResource(cardList[wrongNr2 - 1].imageId)
 
             rightAnswerImageId =
                 cardList[rightNr - 1].imageId       // Sparar imageId för senare använding
@@ -157,12 +161,23 @@ class LvlTwoActivity : AppCompatActivity() {
         } else if (placement == 2) {
             playerCard1View.setImageResource(cardList[wrongNr - 1].imageId)
             playerCard2View.setImageResource(cardList[rightNr - 1].imageId)
+            playerCard3View.setImageResource(cardList[wrongNr2 - 1].imageId)
 
             rightAnswerImageId =
                 cardList[rightNr - 1].imageId       // Sparar imageId för senare använding
 
             rightAnswerCard = 2
 
+        }
+        else if (placement == 3) {
+            playerCard1View.setImageResource(cardList[wrongNr - 1].imageId)
+            playerCard2View.setImageResource(cardList[wrongNr2 - 1].imageId)
+            playerCard3View.setImageResource(cardList[rightNr - 1].imageId)
+
+            rightAnswerImageId =
+                cardList[rightNr - 1].imageId       // Sparar imageId för senare använding
+
+            rightAnswerCard = 3
         }
     }
 
@@ -176,9 +191,13 @@ class LvlTwoActivity : AppCompatActivity() {
 
             view.visibility = View.INVISIBLE
             playerCard2View.visibility = View.INVISIBLE
+            playerCard3View.visibility = View.INVISIBLE
 
             if (score >= 20) {
                 startNextLvlActivity()
+            }
+            else {
+                reload()
             }
 
 
@@ -197,14 +216,19 @@ class LvlTwoActivity : AppCompatActivity() {
 
            */
 
-            reload()
 
-        } else if (score > 0) {
+
+        } else if (score > 7) {
             score--
             scoreTextView.text = "$score"       // Varför uppdateras inte detta automatiskt?
 
             view.visibility = View.INVISIBLE
-        } else {
+        }
+        else if (score <= 7) {
+
+            returnToMainActivity()
+        }
+        else {
             view.visibility = View.INVISIBLE
         }
 
@@ -220,9 +244,13 @@ class LvlTwoActivity : AppCompatActivity() {
 
             view.visibility = View.GONE
             playerCard1View.visibility = View.GONE
+            playerCard3View.visibility = View.GONE
 
             if (score >= 20) {
                 startNextLvlActivity()
+            }
+            else {
+                reload()
             }
 
 
@@ -241,15 +269,74 @@ class LvlTwoActivity : AppCompatActivity() {
 
              */
 
-            reload()
 
-        } else if (score > 0) {
+
+        } else if (score > 7) {
             score--
             scoreTextView.text = "$score"       // Varför uppdateras inte detta automatiskt?
 
             view.visibility = View.INVISIBLE
+        }
+        else if (score <= 7) {
+
+            returnToMainActivity()
+
 
         } else {
+
+            view.visibility = View.INVISIBLE
+        }
+
+
+    }
+
+    fun answeringCard3(view: View) {
+
+
+        if (rightAnswerCard == 3) {
+            score++
+            scoreTextView.text = "$score"
+
+            view.visibility = View.GONE
+            playerCard1View.visibility = View.GONE
+            playerCard2View.visibility = View.GONE
+
+            if (score >= 20) {
+                startNextLvlActivity()
+            }
+            else {
+                reload()
+            }
+
+
+            /*
+            if (hiOrLow == 1) {
+
+                lowerView.setImageResource(rightAnswerImageId)
+                lowerView.setBackgroundResource(R.drawable.roundedcorner)
+
+            } else if (hiOrLow == 2) {
+
+                higherView.setImageResource(rightAnswerImageId)
+                higherView.setBackgroundResource(R.drawable.roundedcorner)
+
+            }
+
+             */
+
+
+
+        } else if (score > 7) {
+            score--
+            scoreTextView.text = "$score"       // Varför uppdateras inte detta automatiskt?
+
+            view.visibility = View.INVISIBLE
+        }
+        else if (score <= 7) {
+
+            returnToMainActivity()
+        }
+        else {
 
             view.visibility = View.INVISIBLE
         }
@@ -274,6 +361,7 @@ class LvlTwoActivity : AppCompatActivity() {
 
         playerCard1View.visibility = View.VISIBLE
         playerCard2View.visibility = View.VISIBLE
+        playerCard3View.visibility = View.VISIBLE
 
         mainNrView.setImageResource(setImage(listOfcards))
 
@@ -283,12 +371,18 @@ class LvlTwoActivity : AppCompatActivity() {
 
     }
 
-    fun startNextLvlActivity() {
+    private fun startNextLvlActivity() {
 
         val intent = Intent(this, LvlThreeActivity::class.java)
         intent.putExtra("score", score)
         startActivity(intent)
 
         Log.d("nummer", "Nu startas nästa aktivitet.")
+    }
+
+    private fun returnToMainActivity() {
+        val intent = Intent(this, MainActivity::class.java)
+        intent.putExtra("score", score)
+        startActivity(intent)
     }
 }

@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity() {
     var hiOrLow = 0
     var rightNr = 0
     var wrongNr = 0
-    var score = 8                                                                                   // sätt denna till 0 när du testat klart.
+    var score = 9                                                                                  // sätt denna till 0 när du testat klart.
     var rightAnswerCard = 0     // Håller reda på vilket kort som är rätt
     var rightAnswerImageId = 0  // Sparar imageId för rätta svaret för att återanvända kortet
 
@@ -67,6 +67,8 @@ class MainActivity : AppCompatActivity() {
 
         lowerView.visibility = View.GONE
         higherView.visibility = View.GONE
+
+        score = intent.getIntExtra("score",0)
 
 
         scoreTextView.text = "$score"
@@ -325,16 +327,22 @@ class MainActivity : AppCompatActivity() {
     Fixa så att rätt svar hamnar bredvid MainNr om man svarar rätt.                                  x
     Fundera på hur ladda om mainNr och alla andra variabler utan att röra score.                     x
     fixa så lower och higher View byter bg vid reset (blir vitt ibland istället för bakgrundsfärg)   x
-    Fixa så det är tre kort på lvl 2.
-    Lägg till så man åker tillbaka till lvl 1 om man hamnar under 7 poäng?
+    Fixa så det är tre kort på lvl 2.                                                                x
+    Gör en ny aktivitet för nästa lvl och lägg in så denna aktivitet byter aktivitet vid 10p.        x
+    Hur får jag score att bara följa med första gången?                                              x
+    Lägg till så man åker tillbaka till lvl 1 om man hamnar under 7 poäng?                           x
+    Fixa i lvl2activity så att dom 2 korten med fel svar inte visar samma siffra ibland.
+    Fixa lvl 3 så att värdet ökar till 1 - 20.
+    Fixa en "Du vann!" aktivitet.
     Fixa så att det spelas ett ljud när man lägger rätt.
 
-???
-    Måste jag skapa score i nya aktiviteten om jag skickar med den?
+
     Fixa så att strängarna i hiOrLow func refererar till strings-xml
-    Gör en ny aktivitet för nästa lvl och lägg in så denna aktivitet byter aktivitet vid 10p.
+
     Städa bort alla kontroller.
-    Lägg till ljud vid rätt och fel svar.
+    Lägg till ljud vid rätt svar.
+    ???
+    Måste jag skapa score i nya aktiviteten om jag skickar med den?
 
 
 
