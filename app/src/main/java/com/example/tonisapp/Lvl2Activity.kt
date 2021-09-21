@@ -8,7 +8,7 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 
-class MainActivity : AppCompatActivity() {
+class lvl2Activity : AppCompatActivity() {
 
     // Alla mina olika kort
     val card1 = Card(1, R.drawable.one)
@@ -282,28 +282,3 @@ class MainActivity : AppCompatActivity() {
     }
 
 }
-
-
-
-/*  Fixa en random som sätter nummret i mainNr                                                       x
-    Fixa så att högre eller lägre än visas random på skärmen                                         x
-    Fixa så att player cards visar ett rätt och ett fel svar, rätt svar ska även sparas som int.     x
-    Fixa så att en ruta dyker upp bredvid mainNrView.                                                x
-    Kolla varför right och wrong Nr spårade ur helt plötsligt. Efter jag lagt till lower och higher view.    x
-    Fixa så att score ökas om man svarar rätt, eller minskas om man svarar fel.                      x
-    Fixa så alla kort försvinner om man svarar rätt.                                                 x
-    Gör om lowerVIew och higherView så dom är ImageViews..                                           x
-    Fixa så att rätt svar hamnar bredvid MainNr om man svarar rätt.                                  x
-    Fundera på hur ladda om mainNr och alla andra variabler utan att röra score.                     x
-    fixa så lower och higher View byter bg vid reset (blir vitt ibland istället för bakgrundsfärg)   x
-
-???
-    Måste jag skapa score i nya aktiviteten om jag skickar med den?
-    Fixa så att strängarna i hiOrLow func refererar till strings-xml
-    Gör en ny aktivitet för nästa lvl och lägg in så denna aktivitet byter aktivitet vid 10p.
-    Städa bort alla kontroller.
-    Lägg till ljud vid rätt och fel svar.
-
-
-
- */
