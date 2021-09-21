@@ -9,7 +9,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TonisApp">
-        <activity android:name=".Lvl2Activity"></activity>
         <activity android:name=".LvlThreeActivity" />
         <activity android:name=".LvlTwoActivity" />
         <activity android:name=".MainActivity">

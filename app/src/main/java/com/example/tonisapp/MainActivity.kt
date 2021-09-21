@@ -1,10 +1,12 @@
 package com.example.tonisapp
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
 import android.view.View
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 
@@ -32,7 +34,7 @@ class MainActivity : AppCompatActivity() {
     var hiOrLow = 0
     var rightNr = 0
     var wrongNr = 0
-    var score = 0
+    var score = 8                                                                                   // sätt denna till 0 när du testat klart.
     var rightAnswerCard = 0     // Håller reda på vilket kort som är rätt
     var rightAnswerImageId = 0  // Sparar imageId för rätta svaret för att återanvända kortet
 
@@ -45,6 +47,9 @@ class MainActivity : AppCompatActivity() {
     lateinit var playerCard2View: ImageView
     lateinit var lowerView: ImageView
     lateinit var higherView: ImageView
+
+
+
 
 
 
@@ -171,8 +176,14 @@ class MainActivity : AppCompatActivity() {
             view.visibility = View.INVISIBLE
             playerCard2View.visibility = View.INVISIBLE
 
+            if (score >= 10) {
+                startNextLvlActivity()
+            }
+            else {
+                reload()
+            }
 
-
+/*
             if (hiOrLow == 1 ) {
 
                 lowerView.setImageResource(rightAnswerImageId)
@@ -185,7 +196,9 @@ class MainActivity : AppCompatActivity() {
                 higherView.setBackgroundResource(R.drawable.roundedcorner)
             }
 
-            reload()
+ */
+
+
 
 
 
@@ -218,8 +231,14 @@ class MainActivity : AppCompatActivity() {
             view.visibility = View.GONE
             playerCard1View.visibility = View.GONE
 
+            if (score >= 10) {
+                startNextLvlActivity()
+            }
+            else {
+                reload()
+            }
 
-
+/*
             if (hiOrLow == 1 ) {
 
                 lowerView.setImageResource(rightAnswerImageId)
@@ -233,7 +252,9 @@ class MainActivity : AppCompatActivity() {
 
             }
 
-            reload()
+ */
+
+
 
             // Lägg in så att det antingen:
             // Allting reloadas
@@ -244,6 +265,7 @@ class MainActivity : AppCompatActivity() {
             score --
             scoreTextView.text = "$score"       // Varför uppdateras inte detta automatiskt?
 
+            view.visibility = View.INVISIBLE
 
         }
         else {
@@ -281,6 +303,15 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    fun startNextLvlActivity() {
+
+        val intent = Intent(this, LvlTwoActivity::class.java)
+        intent.putExtra("score", score)
+        startActivity(intent)
+
+        Log.d("nummer", "Nu startas nästa aktivitet.")
+    }
+
 }
 
 
@@ -296,6 +327,9 @@ class MainActivity : AppCompatActivity() {
     Fixa så att rätt svar hamnar bredvid MainNr om man svarar rätt.                                  x
     Fundera på hur ladda om mainNr och alla andra variabler utan att röra score.                     x
     fixa så lower och higher View byter bg vid reset (blir vitt ibland istället för bakgrundsfärg)   x
+    Fixa så det är tre kort på lvl 2.
+    Lägg till så man åker tillbaka till lvl 1 om man hamnar under 7 poäng?
+    Fixa så att det spelas ett ljud när man lägger rätt.
 
 ???
     Måste jag skapa score i nya aktiviteten om jag skickar med den?
