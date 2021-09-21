@@ -3,10 +3,8 @@ package com.example.tonisapp
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
 import android.util.Log
 import android.view.View
-import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 
@@ -46,8 +44,10 @@ class LvlTwoActivity : AppCompatActivity() {
     lateinit var hiOrLowTextView: TextView
     lateinit var playerCard1View: ImageView
     lateinit var playerCard2View: ImageView
+    lateinit var playerCard3View: ImageView
     lateinit var lowerView: ImageView
     lateinit var higherView: ImageView
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -63,6 +63,7 @@ class LvlTwoActivity : AppCompatActivity() {
         hiOrLowTextView = findViewById(R.id.hiLowTextView)
         playerCard1View = findViewById(R.id.playerCard1)
         playerCard2View = findViewById(R.id.playerCard2)
+        playerCard3View = findViewById(R.id.playerCard3)
         lowerView = findViewById(R.id.lowerView)
         higherView = findViewById(R.id.higherView)
 

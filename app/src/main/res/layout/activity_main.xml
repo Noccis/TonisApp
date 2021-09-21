@@ -86,7 +86,7 @@
         app:srcCompat="@drawable/blank" />
 
     <ImageView
-        android:id="@+id/playerCard2"
+        android:id="@+id/playerCard3"
         android:layout_width="110dp"
         android:layout_height="110dp"
         android:layout_marginEnd="60dp"
@@ -106,7 +106,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:barrierDirection="left"
-        app:constraint_referenced_ids="playerCard2"
+        app:constraint_referenced_ids="playerCard3"
         tools:layout_editor_absoluteX="241dp" />
 
     <TextView
