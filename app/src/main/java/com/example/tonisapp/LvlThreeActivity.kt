@@ -3,7 +3,6 @@ package com.example.tonisapp
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -21,12 +20,24 @@ class LvlThreeActivity : AppCompatActivity() {
     val card8 = Card(8, R.drawable.eight)
     val card9 = Card(9, R.drawable.nine)
     val card10 = Card(10, R.drawable.ten)
+    val card11 = Card(11, R.drawable.eleven)
+    val card12 = Card(12, R.drawable.twelve)
+    val card13 = Card(13, R.drawable.thirteen)
+    val card14 = Card(14, R.drawable.fourteen)
+    val card15 = Card(15, R.drawable.fifteen)
+    val card16 = Card(16, R.drawable.sixteen)
+    val card17 = Card(17, R.drawable.seventeen)
+    val card18 = Card(18, R.drawable.eighteen)
+    val card19 = Card(19, R.drawable.nineteen)
+    val card20 = Card(20, R.drawable.twenty)
+
+
 
 
     // Lista för alla bilder och nr
 
-    val listOfcards =
-        mutableListOf<Card>(card1, card2, card3, card4, card5, card6, card7, card8, card9, card10)
+    val listOfcards = mutableListOf(card1, card2, card3, card4, card5, card6, card7, card8, card9, card10,
+         card11, card12, card13, card14, card15, card16, card17, card18, card19, card20)
 
     // Int variabler:
     var mainNr = 0
@@ -110,8 +121,7 @@ class LvlThreeActivity : AppCompatActivity() {
         val string: String
         if (hiOrLow == 1) {
 
-            string =
-                "Lägg lägre än"                                                                    // Fixa så den pekar på strängen i XML filen
+            string = "Lägg lägre än"                                                                    // Fixa så den pekar på strängen i XML filen
             lowerView.visibility = View.VISIBLE
         } else if (hiOrLow == 2) {
             string =
@@ -216,7 +226,7 @@ class LvlThreeActivity : AppCompatActivity() {
             playerCard2View.visibility = View.INVISIBLE
             playerCard3View.visibility = View.INVISIBLE
 
-            if (score >= 30) {
+            if (score >= 40) {
                 startNextLvlActivity()
             }
             else {
@@ -269,7 +279,7 @@ class LvlThreeActivity : AppCompatActivity() {
             playerCard1View.visibility = View.GONE
             playerCard3View.visibility = View.GONE
 
-            if (score >= 20) {
+            if (score >= 40) {
                 startNextLvlActivity()
             }
             else {
@@ -324,7 +334,7 @@ class LvlThreeActivity : AppCompatActivity() {
             playerCard1View.visibility = View.GONE
             playerCard2View.visibility = View.GONE
 
-            if (score >= 30) {
+            if (score >= 40) {
                 startNextLvlActivity()
             }
             else {
