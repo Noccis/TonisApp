@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity() {
     var hiOrLow = 0
     var rightNr = 0
     var wrongNr = 0
-    var score = 9                                                                                  // sätt denna till 0 när du testat klart.
+    var score = 0
     var rightAnswerCard = 0     // Håller reda på vilket kort som är rätt
     var rightAnswerImageId = 0  // Sparar imageId för rätta svaret för att återanvända kortet
 
@@ -68,7 +68,7 @@ class MainActivity : AppCompatActivity() {
         lowerView.visibility = View.GONE
         higherView.visibility = View.GONE
 
-        score = intent.getIntExtra("score",0)
+        score = intent.getIntExtra("score",9)                                    // sätt denna till 0 när du testat klart.
 
 
         scoreTextView.text = "$score"
@@ -331,7 +331,8 @@ class MainActivity : AppCompatActivity() {
     Gör en ny aktivitet för nästa lvl och lägg in så denna aktivitet byter aktivitet vid 10p.        x
     Hur får jag score att bara följa med första gången?                                              x
     Lägg till så man åker tillbaka till lvl 1 om man hamnar under 7 poäng?                           x
-    Fixa i lvl2activity så att dom 2 korten med fel svar inte visar samma siffra ibland.
+    Fixa i lvl2activity så att dom 2 korten med fel svar inte visar samma siffra ibland.             x
+    Kolla varför appen krashar när man hoppar över till lvl 3
     Fixa lvl 3 så att värdet ökar till 1 - 20.
     Fixa en "Du vann!" aktivitet.
     Fixa så att det spelas ett ljud när man lägger rätt.

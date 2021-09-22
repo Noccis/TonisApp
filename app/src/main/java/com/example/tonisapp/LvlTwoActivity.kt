@@ -139,11 +139,34 @@ class LvlTwoActivity : AppCompatActivity() {
             wrongNr = (higherNr..10).random()
             wrongNr2 = (higherNr..10).random()
 
+            if (mainNr <9) {        // För att appen inte ska krasha om wrong nr bara kan vara en siffra.
+
+            while (wrongNr == wrongNr2) {       // ser till att dom fel svaren inte är samma.
+
+                if (wrongNr == wrongNr2) {
+
+                wrongNr2 = (higherNr..10).random()
+                }
+            }
+            }
+
         } else if (hiOrLow == 2) {
 
             rightNr = (higherNr..10).random()
             wrongNr = (1..lowerNr).random()
             wrongNr2 = (1..lowerNr).random()
+
+            if (mainNr >2) {        // För att appen inte ska krasha om wrong nr bara kan vara en siffra.
+
+                while (wrongNr == wrongNr2) {       // ser till att dom fel svaren inte är samma.
+                    if (wrongNr == wrongNr2) {
+
+                        wrongNr2 = (1..lowerNr).random()
+                    }
+
+
+                }
+            }
 
         }
 
