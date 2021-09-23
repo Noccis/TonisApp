@@ -334,7 +334,8 @@ class MainActivity : AppCompatActivity() {
     Fixa i lvl2activity så att dom 2 korten med fel svar inte visar samma siffra ibland.             x
     Gör kort från 10 till 20.                                                                        x
     Fixa lvl 3 så att värdet ökar till 1 - 20.                                                       x
-    Fixa en "Du vann!" aktivitet.
+    Fixa en "Du vann!" aktivitet.                                                                    x
+    Fixa lvl 3.....
     Fixa så att det spelas ett ljud när man lägger rätt.
 
     Städa bort alla kontroller.

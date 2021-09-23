@@ -88,8 +88,7 @@ class LvlThreeActivity : AppCompatActivity() {
         mainNrView.setImageResource(setImage(listOfcards))      //Skapar random siffra/kort i mainNr
 
 
-        hiOrLowTextView.text =
-            hiOrLow()                        //Bestämmer om man ska lägga högre eller lägre.
+        hiOrLowTextView.text = hiOrLow()                        //Bestämmer om man ska lägga högre eller lägre.
 
 
 
@@ -407,6 +406,7 @@ class LvlThreeActivity : AppCompatActivity() {
     private fun startNextLvlActivity() {
 
         val intent = Intent(this, WinActivity::class.java)
+        intent.putExtra("score", score)
         startActivity(intent)
     }
 
