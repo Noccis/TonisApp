@@ -19,7 +19,7 @@ class WinActivity : AppCompatActivity() {
             restart()
         }
 
-        // var score = intent.getIntExtra("score", 0)
+
 
 
 

@@ -336,8 +336,12 @@ class MainActivity : AppCompatActivity() {
     Fixa lvl 3 så att värdet ökar till 1 - 20.                                                       x
     Fixa en "Du vann!" aktivitet.                                                                    x
     Fixa lvl 3.....
+    Fixa higher och lower strings igen!
     Fixa så att det spelas ett ljud när man lägger rätt.
+    Lägg upprepande kod och även Card listan i en ny fil som alla aktivitys kommer åt.
+    Byt ut koden där du uppdaterar score view till det ni körde i klassliste appen 23/9
 
+    Skriv upp presentation minnespunkter och även om ditt problem med krashen när du la till for och while loopen på lvl 3 med att 2 fel svar inte ska vara samma.
     Städa bort alla kontroller.
 
 

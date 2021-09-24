@@ -357,6 +357,7 @@ class LvlTwoActivity : AppCompatActivity() {
         }
         else if (score <= 7) {
 
+            score --
             returnToMainActivity()
         }
         else {

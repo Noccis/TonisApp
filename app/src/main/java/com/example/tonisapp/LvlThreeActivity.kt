@@ -161,7 +161,7 @@ class LvlThreeActivity : AppCompatActivity() {
 
         } else if (hiOrLow == 2) {
 
-            rightNr = (higherNr..19).random()
+            rightNr = (higherNr..20).random()
             wrongNr = (1..lowerNr).random()
             wrongNr2 = (1..lowerNr).random()
 
@@ -258,6 +258,7 @@ class LvlThreeActivity : AppCompatActivity() {
         }
         else if (score <= 17) {
 
+            score --
             returnToLvl2()
         }
         else {
@@ -311,6 +312,7 @@ class LvlThreeActivity : AppCompatActivity() {
         }
         else if (score <= 17) {
 
+            score --
             returnToLvl2()
 
 
@@ -366,6 +368,7 @@ class LvlThreeActivity : AppCompatActivity() {
         }
         else if (score <= 17) {
 
+            score --
             returnToLvl2()
         }
         else {
@@ -406,7 +409,7 @@ class LvlThreeActivity : AppCompatActivity() {
     private fun startNextLvlActivity() {
 
         val intent = Intent(this, WinActivity::class.java)
-        intent.putExtra("score", score)
+        // intent.putExtra("score", score)
         startActivity(intent)
     }
 
