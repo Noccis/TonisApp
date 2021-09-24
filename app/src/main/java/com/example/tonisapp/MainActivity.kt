@@ -3,13 +3,12 @@ package com.example.tonisapp
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 
 class MainActivity : AppCompatActivity() {
-    
+
     // View variabler:
     lateinit var mainNrView: ImageView
     lateinit var scoreTextView: TextView
@@ -18,10 +17,6 @@ class MainActivity : AppCompatActivity() {
     lateinit var playerCard2View: ImageView
     lateinit var lowerView: ImageView
     lateinit var higherView: ImageView
-
-
-
-
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,56 +36,37 @@ class MainActivity : AppCompatActivity() {
         lowerView.visibility = View.GONE
         higherView.visibility = View.GONE
 
-        score = intent.getIntExtra("score",0)                                    // sätt denna till 0 när du testat klart.
-
+        score = intent.getIntExtra("score", 0)
 
         scoreTextView.text = "$score"
 
         mainNrView.setImageResource(setImage(listOfcards))      //Skapar random siffra/kort i mainNr
 
 
-        hiOrLowTextView.text = hiOrLow()                        //Bestämmer om man ska lägga högre eller lägre.
+        hiOrLowTextView.text =
+            hiOrLow()                        //Bestämmer om man ska lägga högre eller lägre.
 
-        Log.d("nummer", "$mainNr")
 
-        // Genererar rätt och fel svar till random playerCard
-        randomPlayerCard(listOfcards)
+        randomPlayerCard(listOfcards)       // Genererar rätt och fel svar till random playerCard
 
 
     }
-
-    // Main Nr funktioner:
-    fun randomMainNr ():Int {
-
-        mainNr = (2..9).random()
-        return mainNr
-
-    }
-
-    fun setImage(cardList: MutableList<Card>): Int {
-
-        return cardList[randomMainNr() - 1].imageId
-    }
-
-
 
     // Hi Low funktioner:
 
-    fun hiOrLow():String {
+    fun hiOrLow(): String {
 
         hiOrLow = random1or2()
         val string: String
         if (hiOrLow == 1) {
 
-            string = "Lägg lägre än"                                                                    // Fixa så den pekar på strängen i XML filen
+            string = getString(R.string.lower)                                                                   // Fixa så den pekar på strängen i XML filen
             lowerView.visibility = View.VISIBLE
-        }
-        else  if (hiOrLow == 2){
-            string = "Lägg högre än"                                                                    // Fixa så den pekar på strängen i XML filen
+        } else if (hiOrLow == 2) {
+            string = getString(R.string.higher)                                                                    // Fixa så den pekar på strängen i XML filen
             higherView.visibility = View.VISIBLE
-        }
-        else {
-            string = "Error"
+        } else {
+            string = getString(R.string.error)
         }
         return string
     }
@@ -101,37 +77,38 @@ class MainActivity : AppCompatActivity() {
     fun randomPlayerCard(cardList: MutableList<Card>) {
         val placement = random1or2()
 
-        val lowerNr = mainNr -1     // Skapade dessa variabler då något blev fel när jag skrev mmain -1
-        val higherNr = mainNr +1
+        val lowerNr =
+            mainNr - 1     // Skapade dessa variabler då något blev fel när jag skrev mmain -1
+        val higherNr = mainNr + 1
 
         if (hiOrLow == 1) {
 
             rightNr = (1..lowerNr).random()
             wrongNr = (higherNr..10).random()
 
-        }
-        else if (hiOrLow == 2) {
+        } else if (hiOrLow == 2) {
 
             rightNr = (higherNr..10).random()
             wrongNr = (1..lowerNr).random()
 
         }
 
-        if(placement == 1) {
-            playerCard1View.setImageResource(cardList[rightNr -1].imageId)
-            playerCard2View.setImageResource(cardList[wrongNr -1].imageId)
+        if (placement == 1) {
+            playerCard1View.setImageResource(cardList[rightNr - 1].imageId)
+            playerCard2View.setImageResource(cardList[wrongNr - 1].imageId)
 
-            rightAnswerImageId = cardList[rightNr -1].imageId       // Sparar imageId för senare använding
+            rightAnswerImageId =
+                cardList[rightNr - 1].imageId       // Sparar imageId för senare använding
 
             rightAnswerCard = 1
 
 
-        }
-        else if (placement == 2){
-            playerCard1View.setImageResource(cardList[wrongNr -1].imageId)
-            playerCard2View.setImageResource(cardList[rightNr -1].imageId)
+        } else if (placement == 2) {
+            playerCard1View.setImageResource(cardList[wrongNr - 1].imageId)
+            playerCard2View.setImageResource(cardList[rightNr - 1].imageId)
 
-            rightAnswerImageId = cardList[rightNr -1].imageId       // Sparar imageId för senare använding
+            rightAnswerImageId =
+                cardList[rightNr - 1].imageId       // Sparar imageId för senare använding
 
             rightAnswerCard = 2
 
@@ -143,7 +120,7 @@ class MainActivity : AppCompatActivity() {
     fun answeringCard1(view: View) {
 
         if (rightAnswerCard == 1) {
-            score ++
+            score++
             scoreTextView.text = "$score"
 
             view.visibility = View.INVISIBLE
@@ -151,8 +128,7 @@ class MainActivity : AppCompatActivity() {
 
             if (score >= 10) {
                 startNextLvlActivity()
-            }
-            else {
+            } else {
                 reload()
             }
 
@@ -172,24 +148,18 @@ class MainActivity : AppCompatActivity() {
  */
 
 
-
-
-
             // Lägg in så att det antingen:
             // Allting reloadas
             // Laddas till nästa nivå
             // OCH låter eller blinkar till att det är rätt.
-        }
-        else if (score > 0) {
-            score --
+        } else if (score > 0) {
+            score--
             scoreTextView.text = "$score"       // Varför uppdateras inte detta automatiskt?
 
             view.visibility = View.INVISIBLE
-        }
-        else {
+        } else {
             view.visibility = View.INVISIBLE
         }
-
 
 
     }
@@ -198,7 +168,7 @@ class MainActivity : AppCompatActivity() {
 
 
         if (rightAnswerCard == 2) {
-            score ++
+            score++
             scoreTextView.text = "$score"
 
             view.visibility = View.GONE
@@ -206,8 +176,7 @@ class MainActivity : AppCompatActivity() {
 
             if (score >= 10) {
                 startNextLvlActivity()
-            }
-            else {
+            } else {
                 reload()
             }
 
@@ -227,29 +196,19 @@ class MainActivity : AppCompatActivity() {
 
  */
 
-
-
-            // Lägg in så att det antingen:
-            // Allting reloadas
-            // Laddas till nästa nivå
-            // OCH låter eller blinkar till att det är rätt.
-        }
-        else if (score > 0){
-            score --
+        } else if (score > 0) {
+            score--
             scoreTextView.text = "$score"       // Varför uppdateras inte detta automatiskt?
 
             view.visibility = View.INVISIBLE
 
-        }
-        else {
+        } else {
 
             view.visibility = View.INVISIBLE
         }
 
 
-
     }
-
 
 
     fun reload() {
@@ -277,41 +236,8 @@ class MainActivity : AppCompatActivity() {
         val intent = Intent(this, LvlTwoActivity::class.java)
         intent.putExtra("score", score)
         startActivity(intent)
-
-        Log.d("nummer", "Nu startas nästa aktivitet.")
     }
 
 }
 
 
-
-/*  Fixa en random som sätter nummret i mainNr                                                       x
-    Fixa så att högre eller lägre än visas random på skärmen                                         x
-    Fixa så att player cards visar ett rätt och ett fel svar, rätt svar ska även sparas som int.     x
-    Fixa så att en ruta dyker upp bredvid mainNrView.                                                x
-    Kolla varför right och wrong Nr spårade ur helt plötsligt. Efter jag lagt till lower och higher view.    x
-    Fixa så att score ökas om man svarar rätt, eller minskas om man svarar fel.                      x
-    Fixa så alla kort försvinner om man svarar rätt.                                                 x
-    Gör om lowerVIew och higherView så dom är ImageViews..                                           x
-    Fixa så att rätt svar hamnar bredvid MainNr om man svarar rätt.                                  x
-    Fundera på hur ladda om mainNr och alla andra variabler utan att röra score.                     x
-    fixa så lower och higher View byter bg vid reset (blir vitt ibland istället för bakgrundsfärg)   x
-    Fixa så det är tre kort på lvl 2.                                                                x
-    Gör en ny aktivitet för nästa lvl och lägg in så denna aktivitet byter aktivitet vid 10p.        x
-    Hur får jag score att bara följa med första gången?                                              x
-    Lägg till så man åker tillbaka till lvl 1 om man hamnar under 7 poäng?                           x
-    Fixa i lvl2activity så att dom 2 korten med fel svar inte visar samma siffra ibland.             x
-    Gör kort från 10 till 20.                                                                        x
-    Fixa lvl 3 så att värdet ökar till 1 - 20.                                                       x
-    Fixa en "Du vann!" aktivitet.                                                                    x
-    Fixa lvl 3.....
-    Fixa higher och lower strings igen!
-    Fixa så att det spelas ett ljud när man lägger rätt.
-    Lägg upprepande kod och även Card listan i en ny fil som alla aktivitys kommer åt.
-    Byt ut koden där du uppdaterar score view till det ni körde i klassliste appen 23/9
-
-    Skriv upp presentation minnespunkter och även om ditt problem med krashen när du la till for och while loopen på lvl 3 med att 2 fel svar inte ska vara samma.
-    Städa bort alla kontroller.
-
-
- */

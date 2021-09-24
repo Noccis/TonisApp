@@ -2,4 +2,5 @@
     <string name="app_name">TonisApp</string>
     <string name="higher">Lägg högre än</string>
     <string name="lower">Lägg lägre än</string>
+    <string name="error">Error!</string>
 </resources>

@@ -5,7 +5,7 @@ var mainNr = 0
 var hiOrLow = 0
 var rightNr = 0
 var wrongNr = 0
-var wrongNr2 = 0    // Extra fel nr för extra playerCard
+var wrongNr2 = 0
 var score = 0
 var rightAnswerCard = 0     // Håller reda på vilket kort som är rätt
 var rightAnswerImageId = 0  // Sparar imageId för rätta svaret för att återanvända kortet
@@ -35,4 +35,25 @@ val card20 = Card(20, R.drawable.twenty)
 
 // Lista för alla bilder och nr
 
-val listOfcards = mutableListOf(card1, card2, card3, card4, card5, card6, card7, card8, card9, card10, card11, card12, card13, card14, card15, card16, card17, card18, card19, card20)
+val listOfcards = mutableListOf(
+    card1,
+    card2,
+    card3,
+    card4,
+    card5,
+    card6,
+    card7,
+    card8,
+    card9,
+    card10,
+    card11,
+    card12,
+    card13,
+    card14,
+    card15,
+    card16,
+    card17,
+    card18,
+    card19,
+    card20)
+

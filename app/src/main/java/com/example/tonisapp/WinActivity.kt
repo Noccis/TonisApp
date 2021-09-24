@@ -20,11 +20,8 @@ class WinActivity : AppCompatActivity() {
         }
 
 
-
-
-
-
     }
+
     fun restart() {
         val intent = Intent(this, MainActivity::class.java)
         intent.putExtra("score", score)

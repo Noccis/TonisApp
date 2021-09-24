@@ -3,17 +3,11 @@ package com.example.tonisapp
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 
 class LvlTwoActivity : AppCompatActivity() {
-
-
-
-
-
 
     // View variabler:
     lateinit var mainNrView: ImageView
@@ -26,15 +20,13 @@ class LvlTwoActivity : AppCompatActivity() {
     lateinit var higherView: ImageView
 
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_lvl_two)
 
-        // Hämtar score från förra aktiviteten.
-        score = intent.getIntExtra("score", 0)
 
-        // Binder ihop mina view variabler med mina views.
+        score = intent.getIntExtra("score", 0)       // Hämtar score från förra aktiviteten.
+
         mainNrView = findViewById(R.id.mainNrView)
         scoreTextView = findViewById(R.id.scoreView)
         hiOrLowTextView = findViewById(R.id.hiLowTextView)
@@ -50,35 +42,13 @@ class LvlTwoActivity : AppCompatActivity() {
 
         scoreTextView.text = "$score"
 
-        mainNrView.setImageResource(setImage(listOfcards))      //Skapar random siffra/kort i mainNr
+        mainNrView.setImageResource(setImage(listOfcards))
 
+        hiOrLowTextView.text = hiOrLow()
 
-        hiOrLowTextView.text =
-            hiOrLow()                        //Bestämmer om man ska lägga högre eller lägre.
-
-
-
-        // Genererar rätt och fel svar till random playerCard
         randomPlayerCard(listOfcards)
-
-
     }
 
-    // Main Nr funktioner:
-    fun randomMainNr(): Int {
-
-        mainNr = (2..9).random()
-        return mainNr
-
-    }
-
-    fun setImage(cardList: MutableList<Card>): Int {
-
-        return cardList[randomMainNr() - 1].imageId
-    }
-
-
-    // Hi Low funktioner:
 
     fun hiOrLow(): String {
 
@@ -99,14 +69,12 @@ class LvlTwoActivity : AppCompatActivity() {
         return string
     }
 
-    // Player card funktioner:
-
 
     fun randomPlayerCard(cardList: MutableList<Card>) {
         val placement = (1..3).random()
 
         val lowerNr =
-            mainNr - 1     // Skapade dessa variabler då något blev fel när jag skrev mmain -1
+            mainNr - 1
         val higherNr = mainNr + 1
 
         if (hiOrLow == 1) {
@@ -115,15 +83,15 @@ class LvlTwoActivity : AppCompatActivity() {
             wrongNr = (higherNr..10).random()
             wrongNr2 = (higherNr..10).random()
 
-            if (mainNr <9) {        // För att appen inte ska krasha om wrong nr bara kan vara en siffra.
+            if (mainNr < 9) {        // För att appen inte ska krasha om wrong nr bara kan vara en siffra.
 
-            while (wrongNr == wrongNr2) {       // ser till att dom fel svaren inte är samma.
+                while (wrongNr == wrongNr2) {       // ser till att dom fel svaren inte är samma.
 
-                if (wrongNr == wrongNr2) {
+                    if (wrongNr == wrongNr2) {
 
-                wrongNr2 = (higherNr..10).random()
+                        wrongNr2 = (higherNr..10).random()
+                    }
                 }
-            }
             }
 
         } else if (hiOrLow == 2) {
@@ -132,7 +100,7 @@ class LvlTwoActivity : AppCompatActivity() {
             wrongNr = (1..lowerNr).random()
             wrongNr2 = (1..lowerNr).random()
 
-            if (mainNr >2) {        // För att appen inte ska krasha om wrong nr bara kan vara en siffra.
+            if (mainNr > 2) {        // För att appen inte ska krasha om wrong nr bara kan vara en siffra.
 
                 while (wrongNr == wrongNr2) {       // ser till att dom fel svaren inte är samma.
                     if (wrongNr == wrongNr2) {
@@ -152,7 +120,7 @@ class LvlTwoActivity : AppCompatActivity() {
             playerCard3View.setImageResource(cardList[wrongNr2 - 1].imageId)
 
             rightAnswerImageId =
-                cardList[rightNr - 1].imageId       // Sparar imageId för senare använding
+                cardList[rightNr - 1].imageId
 
             rightAnswerCard = 1
 
@@ -163,18 +131,17 @@ class LvlTwoActivity : AppCompatActivity() {
             playerCard3View.setImageResource(cardList[wrongNr2 - 1].imageId)
 
             rightAnswerImageId =
-                cardList[rightNr - 1].imageId       // Sparar imageId för senare använding
+                cardList[rightNr - 1].imageId
 
             rightAnswerCard = 2
 
-        }
-        else if (placement == 3) {
+        } else if (placement == 3) {
             playerCard1View.setImageResource(cardList[wrongNr - 1].imageId)
             playerCard2View.setImageResource(cardList[wrongNr2 - 1].imageId)
             playerCard3View.setImageResource(cardList[rightNr - 1].imageId)
 
             rightAnswerImageId =
-                cardList[rightNr - 1].imageId       // Sparar imageId för senare använding
+                cardList[rightNr - 1].imageId
 
             rightAnswerCard = 3
         }
@@ -194,27 +161,25 @@ class LvlTwoActivity : AppCompatActivity() {
 
             if (score >= 20) {
                 startNextLvlActivity()
-            }
-            else {
+            } else {
                 reload()
             }
 
 
-          /*
-           Ta upp detta med delay om tid finns.
-           if (hiOrLow == 1) {
+            /*
+             Ta upp detta med delay om tid finns.
+             if (hiOrLow == 1) {
 
-                lowerView.setImageResource(rightAnswerImageId)
-                lowerView.setBackgroundResource(R.drawable.roundedcorner)
+                  lowerView.setImageResource(rightAnswerImageId)
+                  lowerView.setBackgroundResource(R.drawable.roundedcorner)
 
-            } else if (hiOrLow == 2) {
+              } else if (hiOrLow == 2) {
 
-                higherView.setImageResource(rightAnswerImageId)
-                higherView.setBackgroundResource(R.drawable.roundedcorner)
-            }
+                  higherView.setImageResource(rightAnswerImageId)
+                  higherView.setBackgroundResource(R.drawable.roundedcorner)
+              }
 
-           */
-
+             */
 
 
         } else if (score > 7) {
@@ -222,12 +187,10 @@ class LvlTwoActivity : AppCompatActivity() {
             scoreTextView.text = "$score"       // Varför uppdateras inte detta automatiskt?
 
             view.visibility = View.INVISIBLE
-        }
-        else if (score <= 7) {
+        } else if (score <= 7) {
 
             returnToMainActivity()
-        }
-        else {
+        } else {
             view.visibility = View.INVISIBLE
         }
 
@@ -247,8 +210,7 @@ class LvlTwoActivity : AppCompatActivity() {
 
             if (score >= 20) {
                 startNextLvlActivity()
-            }
-            else {
+            } else {
                 reload()
             }
 
@@ -269,14 +231,12 @@ class LvlTwoActivity : AppCompatActivity() {
              */
 
 
-
         } else if (score > 7) {
             score--
             scoreTextView.text = "$score"       // Varför uppdateras inte detta automatiskt?
 
             view.visibility = View.INVISIBLE
-        }
-        else if (score <= 7) {
+        } else if (score <= 7) {
 
             returnToMainActivity()
 
@@ -302,8 +262,7 @@ class LvlTwoActivity : AppCompatActivity() {
 
             if (score >= 20) {
                 startNextLvlActivity()
-            }
-            else {
+            } else {
                 reload()
             }
 
@@ -324,30 +283,21 @@ class LvlTwoActivity : AppCompatActivity() {
              */
 
 
-
         } else if (score > 7) {
             score--
             scoreTextView.text = "$score"       // Varför uppdateras inte detta automatiskt?
 
             view.visibility = View.INVISIBLE
-        }
-        else if (score <= 7) {
+        } else if (score <= 7) {
 
-            score --
+            score--
             returnToMainActivity()
-        }
-        else {
+        } else {
 
             view.visibility = View.INVISIBLE
         }
 
 
-    }
-
-    // Övriga funktioner:
-
-    fun random1or2(): Int {
-        return (1..2).random()
     }
 
     fun reload() {
@@ -376,8 +326,6 @@ class LvlTwoActivity : AppCompatActivity() {
         val intent = Intent(this, LvlThreeActivity::class.java)
         intent.putExtra("score", score)
         startActivity(intent)
-
-        Log.d("nummer", "Nu startas nästa aktivitet.")
     }
 
     private fun returnToMainActivity() {
