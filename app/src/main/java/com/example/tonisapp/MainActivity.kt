@@ -7,16 +7,7 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 
-class MainActivity : AppCompatActivity() {
-
-    // View variabler:
-    lateinit var mainNrView: ImageView
-    lateinit var scoreTextView: TextView
-    lateinit var hiOrLowTextView: TextView
-    lateinit var playerCard1View: ImageView
-    lateinit var playerCard2View: ImageView
-    lateinit var lowerView: ImageView
-    lateinit var higherView: ImageView
+open class MainActivity : LvlParentActivity() {             // LVL ett activity!!
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -52,29 +43,14 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    // Hi Low funktioner:
 
-    fun hiOrLow(): String {
 
-        hiOrLow = random1or2()
-        val string: String
-        if (hiOrLow == 1) {
 
-            string = getString(R.string.lower)                                                                   // Fixa så den pekar på strängen i XML filen
-            lowerView.visibility = View.VISIBLE
-        } else if (hiOrLow == 2) {
-            string = getString(R.string.higher)                                                                    // Fixa så den pekar på strängen i XML filen
-            higherView.visibility = View.VISIBLE
-        } else {
-            string = getString(R.string.error)
-        }
-        return string
-    }
 
     // Player card funktioner:
 
 
-    fun randomPlayerCard(cardList: MutableList<Card>) {
+ fun randomPlayerCard(cardList: MutableList<Card>) {
         val placement = random1or2()
 
         val lowerNr =
@@ -116,6 +92,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     // Svar funktioner:
+
 
     fun answeringCard1(view: View) {
 
@@ -211,6 +188,8 @@ class MainActivity : AppCompatActivity() {
     }
 
 
+// Övriga funktioner:
+
     fun reload() {
 
         lowerView.visibility = View.GONE
@@ -231,7 +210,7 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    fun startNextLvlActivity() {
+   private fun startNextLvlActivity() {
 
         val intent = Intent(this, LvlTwoActivity::class.java)
         intent.putExtra("score", score)

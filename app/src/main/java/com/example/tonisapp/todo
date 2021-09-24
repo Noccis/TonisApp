@@ -1,8 +1,8 @@
 
 
 
-    Fixa en random som sätter nummret i mainNr                                                       x
-    Fixa så att högre eller lägre än visas random på skärmen                                         x
+                                                           x
+                                            x
     Fixa så att player cards visar ett rätt och ett fel svar, rätt svar ska även sparas som int.     x
     Fixa så att en ruta dyker upp bredvid mainNrView.                                                x
     Kolla varför right och wrong Nr spårade ur helt plötsligt. Efter jag lagt till lower och higher view.    x
@@ -23,12 +23,12 @@
     Fixa lvl 3.....                                                                                  x
     Fixa higher och lower strings igen!                                                              x
     Lägg upprepande kod och även Card listan i en ny fil som alla aktivitys kommer åt.               x
-    Fixa så att det spelas ett ljud när man lägger rätt.
-    Byt ut koden där du uppdaterar score view till det ni körde i klassliste appen 23/9
-    Kolla på delay för rätt svar.
-    Testa appen på Leon!
 
-    Skriv upp presentation minnespunkter och även om ditt problem med krashen när du la till for och while loopen på lvl 3 med att 2 fel svar inte ska vara samma.
-    Städa bort alla kontroller.
+
+
+
+
+
+
 
 

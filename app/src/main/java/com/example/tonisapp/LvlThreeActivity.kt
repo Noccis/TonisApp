@@ -7,7 +7,7 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 
-class LvlThreeActivity : AppCompatActivity() {
+class LvlThreeActivity :  LvlParentActivity() {
 
     // View variabler:
     lateinit var mainNrView: ImageView
