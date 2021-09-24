@@ -10,7 +10,7 @@ import android.widget.TextView
 class LvlTwoActivity : LvlParentActivity() {
 
     // View variabler:
-    lateinit var playerCard3View: ImageView
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,7 +43,7 @@ class LvlTwoActivity : LvlParentActivity() {
 
 
 
-   fun randomPlayerCard(cardList: MutableList<Card>) {
+   private fun randomPlayerCard(cardList: MutableList<Card>) {
         val placement = (1..3).random()
 
         val lowerNr =

@@ -50,7 +50,7 @@ open class MainActivity : LvlParentActivity() {             // LVL ett activity!
     // Player card funktioner:
 
 
- fun randomPlayerCard(cardList: MutableList<Card>) {
+ private fun randomPlayerCard(cardList: MutableList<Card>) {
         val placement = random1or2()
 
         val lowerNr =
@@ -190,7 +190,7 @@ open class MainActivity : LvlParentActivity() {             // LVL ett activity!
 
 // Övriga funktioner:
 
-    fun reload() {
+    private fun reload() {
 
         lowerView.visibility = View.GONE
         lowerView.setImageResource(R.drawable.blankbgcolor)

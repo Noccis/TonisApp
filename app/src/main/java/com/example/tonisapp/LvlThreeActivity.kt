@@ -10,15 +10,6 @@ import android.widget.TextView
 class LvlThreeActivity :  LvlParentActivity() {
 
     // View variabler:
-    lateinit var mainNrView: ImageView
-    lateinit var scoreTextView: TextView
-    lateinit var hiOrLowTextView: TextView
-    lateinit var playerCard1View: ImageView
-    lateinit var playerCard2View: ImageView
-    lateinit var playerCard3View: ImageView
-    lateinit var lowerView: ImageView
-    lateinit var higherView: ImageView
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,27 +39,8 @@ class LvlThreeActivity :  LvlParentActivity() {
     }
 
 
-    fun hiOrLow(): String {
 
-        hiOrLow = random1or2()
-        val string: String
-        if (hiOrLow == 1) {
-
-            string =
-                "Lägg lägre än"                                                                    // Fixa så den pekar på strängen i XML filen
-            lowerView.visibility = View.VISIBLE
-        } else if (hiOrLow == 2) {
-            string =
-                "Lägg högre än"                                                                    // Fixa så den pekar på strängen i XML filen
-            higherView.visibility = View.VISIBLE
-        } else {
-            string = "Error"
-        }
-        return string
-    }
-
-
-    fun randomPlayerCard(cardList: MutableList<Card>) {
+    private fun randomPlayerCard(cardList: MutableList<Card>) {
         val placement = (1..3).random()
 
         val lowerNr =
@@ -300,7 +272,7 @@ class LvlThreeActivity :  LvlParentActivity() {
 
     }
 
-    fun reload() {
+    private fun reload() {
 
         lowerView.visibility = View.GONE
         lowerView.setImageResource(R.drawable.blankbgcolor)

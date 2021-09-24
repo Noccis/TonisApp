@@ -74,6 +74,7 @@ open class LvlParentActivity : AppCompatActivity() {
     lateinit var hiOrLowTextView: TextView
     lateinit var playerCard1View: ImageView
     lateinit var playerCard2View: ImageView
+    lateinit var playerCard3View: ImageView
     lateinit var lowerView: ImageView
     lateinit var higherView: ImageView
 
@@ -148,10 +149,6 @@ open class LvlParentActivity : AppCompatActivity() {
         }
         return string
     }
-
-    // Player card funktioner:
-
-
 
 
 // Övriga funktioner:
