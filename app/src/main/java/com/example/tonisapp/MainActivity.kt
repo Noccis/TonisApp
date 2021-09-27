@@ -108,8 +108,6 @@ open class MainActivity : LvlParentActivity() {             // LVL ett activity!
             } else {
                 reload()
             }
-
-/*
             if (hiOrLow == 1 ) {
 
                 lowerView.setImageResource(rightAnswerImageId)
@@ -122,13 +120,6 @@ open class MainActivity : LvlParentActivity() {             // LVL ett activity!
                 higherView.setBackgroundResource(R.drawable.roundedcorner)
             }
 
- */
-
-
-            // Lägg in så att det antingen:
-            // Allting reloadas
-            // Laddas till nästa nivå
-            // OCH låter eller blinkar till att det är rätt.
         } else if (score > 0) {
             score--
             scoreTextView.text = "$score"       // Varför uppdateras inte detta automatiskt?
