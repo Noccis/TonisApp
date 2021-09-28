@@ -104,6 +104,7 @@ open class MainActivity : LvlParentActivity() {             // LVL ett activity!
         if (rightAnswerCard == 1) {
             score++
             scoreTextView.text = "$score"
+            playRightAnswerSound()
 
             view.visibility = View.INVISIBLE
             playerCard2View.visibility = View.INVISIBLE
@@ -143,6 +144,8 @@ open class MainActivity : LvlParentActivity() {             // LVL ett activity!
         if (rightAnswerCard == 2) {
             score++
             scoreTextView.text = "$score"
+
+            playRightAnswerSound()
 
             view.visibility = View.GONE
             playerCard1View.visibility = View.GONE
@@ -216,6 +219,8 @@ open class MainActivity : LvlParentActivity() {             // LVL ett activity!
      fun startLvl2Activity(view: View) {
 
         val intent = Intent(this, LvlTwoActivity::class.java)
+         score = 18
+         intent.putExtra("score", score)
         startActivity(intent)
     }
 

@@ -128,6 +128,8 @@ class LvlTwoActivity : LvlParentActivity() {
             score++
             scoreTextView.text = "$score"
 
+            playRightAnswerSound()
+
             view.visibility = View.INVISIBLE
             playerCard2View.visibility = View.INVISIBLE
             playerCard3View.visibility = View.INVISIBLE
@@ -176,6 +178,8 @@ class LvlTwoActivity : LvlParentActivity() {
         if (rightAnswerCard == 2) {
             score++
             scoreTextView.text = "$score"
+
+            playRightAnswerSound()
 
             view.visibility = View.GONE
             playerCard1View.visibility = View.GONE
@@ -228,6 +232,8 @@ class LvlTwoActivity : LvlParentActivity() {
         if (rightAnswerCard == 3) {
             score++
             scoreTextView.text = "$score"
+
+            playRightAnswerSound()
 
             view.visibility = View.GONE
             playerCard1View.visibility = View.GONE
