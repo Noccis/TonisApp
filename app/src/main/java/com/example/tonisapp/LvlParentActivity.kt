@@ -1,6 +1,7 @@
 package com.example.tonisapp
 
 import android.content.Intent
+import android.media.MediaPlayer
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -157,6 +158,10 @@ open class LvlParentActivity : AppCompatActivity() {
         return (1..2).random()
     }
 
+    fun playRightAnswerSound() {
+        var mediaPlayer = MediaPlayer.create(this, R.raw.win)
+        mediaPlayer.start()
+    }
 
 
 

@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 
@@ -39,6 +40,10 @@ open class MainActivity : LvlParentActivity() {             // LVL ett activity!
 
 
         randomPlayerCard(listOfcards)       // Genererar rätt och fel svar till random playerCard
+
+        val lvl2Button = findViewById<Button>(R.id.lvl2Button)
+        val lvl3Button = findViewById<Button>(R.id.lvl3Button)
+        val winButton = findViewById<Button>(R.id.winButton)
 
 
     }
@@ -205,6 +210,24 @@ open class MainActivity : LvlParentActivity() {             // LVL ett activity!
 
         val intent = Intent(this, LvlTwoActivity::class.java)
         intent.putExtra("score", score)
+        startActivity(intent)
+    }
+
+     fun startLvl2Activity(view: View) {
+
+        val intent = Intent(this, LvlTwoActivity::class.java)
+        startActivity(intent)
+    }
+
+     fun startLvl3Activity(view: View) {
+
+        val intent = Intent(this, LvlThreeActivity::class.java)
+        startActivity(intent)
+    }
+
+    fun startWinActivity(view: View) {
+
+        val intent = Intent(this, WinActivity::class.java)
         startActivity(intent)
     }
 
