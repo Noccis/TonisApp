@@ -15,6 +15,7 @@ open class MainActivity : LvlParentActivity() {             // LVL ett activity!
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        howManyPlayerCards = 2                      // Ska den här vara innan on create?
 
         // Binder ihop mina view variabler med mina views.
         mainNrView = findViewById(R.id.mainNrView)
@@ -25,8 +26,7 @@ open class MainActivity : LvlParentActivity() {             // LVL ett activity!
         lowerView = findViewById(R.id.lowerView)
         higherView = findViewById(R.id.higherView)
 
-        lowerView.visibility = View.GONE
-        higherView.visibility = View.GONE
+        hiLowViewsInvisible()
 
         score = intent.getIntExtra("score", 0)
 
@@ -51,13 +51,10 @@ open class MainActivity : LvlParentActivity() {             // LVL ett activity!
     }
 
 
-
-
-
     // Player card funktioner:
 
 
- private fun randomPlayerCard(cardList: MutableList<Card>) {
+    private fun randomPlayerCard(cardList: MutableList<Card>) {
         val placement = random1or2()
 
         val lowerNr =
@@ -107,25 +104,12 @@ open class MainActivity : LvlParentActivity() {             // LVL ett activity!
             score++
             scoreTextView.text = "$score"
             playRightAnswerSound()
-
-            view.visibility = View.INVISIBLE
-            playerCard2View.visibility = View.INVISIBLE
+            allPlayerCardsGone()
 
             if (score >= 10) {
                 startNextLvlActivity()
             } else {
                 reload()
-            }
-            if (hiOrLow == 1 ) {
-
-                lowerView.setImageResource(rightAnswerImageId)
-                lowerView.setBackgroundResource(R.drawable.roundedcorner)
-
-            }
-            else if (hiOrLow == 2) {
-
-                higherView.setImageResource(rightAnswerImageId)
-                higherView.setBackgroundResource(R.drawable.roundedcorner)
             }
 
         } else if (score > 0) {
@@ -142,15 +126,12 @@ open class MainActivity : LvlParentActivity() {             // LVL ett activity!
 
     fun answeringCard2(view: View) {
 
-
         if (rightAnswerCard == 2) {
             score++
             scoreTextView.text = "$score"
 
             playRightAnswerSound()
-
-            view.visibility = View.GONE
-            playerCard1View.visibility = View.GONE
+            allPlayerCardsGone()
 
             if (score >= 10) {
                 startNextLvlActivity()
@@ -161,7 +142,7 @@ open class MainActivity : LvlParentActivity() {             // LVL ett activity!
 
         } else if (score > 0) {
             score--
-            scoreTextView.text = "$score"       // Varför uppdateras inte detta automatiskt?
+            scoreTextView.text = "$score"
 
             view.visibility = View.INVISIBLE
 
@@ -178,15 +159,8 @@ open class MainActivity : LvlParentActivity() {             // LVL ett activity!
 
     private fun reload() {
 
-        lowerView.visibility = View.GONE
-        lowerView.setImageResource(R.drawable.blankbgcolor)
-        lowerView.setBackgroundResource(R.drawable.faded)
-        higherView.visibility = View.GONE
-        higherView.setImageResource(R.drawable.blankbgcolor)
-        higherView.setBackgroundResource(R.drawable.faded)
-
-        playerCard1View.visibility = View.VISIBLE
-        playerCard2View.visibility = View.VISIBLE
+        hiLowViewsInvisible()
+        allPlayerCardsVisible()
 
         mainNrView.setImageResource(setImage(listOfcards))
 
@@ -196,7 +170,8 @@ open class MainActivity : LvlParentActivity() {             // LVL ett activity!
 
     }
 
-   private fun startNextLvlActivity() {
+
+    private fun startNextLvlActivity() {
 
         val intent = Intent(this, LvlTwoActivity::class.java)
         intent.putExtra("score", score)
@@ -205,17 +180,19 @@ open class MainActivity : LvlParentActivity() {             // LVL ett activity!
 
     // Funktioner som jag ska ta bort på torsdag! Todo
 
-     fun startLvl2Activity(view: View) {
-
+    fun startLvl2Activity(view: View) {
         val intent = Intent(this, LvlTwoActivity::class.java)
-         score = 18
-         intent.putExtra("score", score)
+        score = 18
+        intent.putExtra("score", score)
         startActivity(intent)
+
     }
 
-     fun startLvl3Activity(view: View) {
+    fun startLvl3Activity(view: View) {
 
         val intent = Intent(this, LvlThreeActivity::class.java)
+        score = 22
+        intent.putExtra("score", score)
         startActivity(intent)
     }
 

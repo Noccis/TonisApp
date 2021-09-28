@@ -16,7 +16,6 @@ class LvlTwoActivity : LvlParentActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_lvl_two)
 
-
         score = intent.getIntExtra("score", 0)       // Hämtar score från förra aktiviteten.
 
         mainNrView = findViewById(R.id.mainNrView)
@@ -28,9 +27,7 @@ class LvlTwoActivity : LvlParentActivity() {
         lowerView = findViewById(R.id.lowerView)
         higherView = findViewById(R.id.higherView)
 
-        lowerView.visibility = View.GONE
-        higherView.visibility = View.GONE
-
+        hiLowViewsInvisible()
 
         scoreTextView.text = "$score"
 
@@ -129,10 +126,7 @@ class LvlTwoActivity : LvlParentActivity() {
             scoreTextView.text = "$score"
 
             playRightAnswerSound()
-
-            view.visibility = View.INVISIBLE
-            playerCard2View.visibility = View.INVISIBLE
-            playerCard3View.visibility = View.INVISIBLE
+            allPlayerCardsGone()
 
             if (score >= 20) {
                 startNextLvlActivity()
@@ -140,21 +134,6 @@ class LvlTwoActivity : LvlParentActivity() {
                 reload()
             }
 
-
-            /*
-             Ta upp detta med delay om tid finns.
-             if (hiOrLow == 1) {
-
-                  lowerView.setImageResource(rightAnswerImageId)
-                  lowerView.setBackgroundResource(R.drawable.roundedcorner)
-
-              } else if (hiOrLow == 2) {
-
-                  higherView.setImageResource(rightAnswerImageId)
-                  higherView.setBackgroundResource(R.drawable.roundedcorner)
-              }
-
-             */
 
 
         } else if (score > 7) {
@@ -180,10 +159,7 @@ class LvlTwoActivity : LvlParentActivity() {
             scoreTextView.text = "$score"
 
             playRightAnswerSound()
-
-            view.visibility = View.GONE
-            playerCard1View.visibility = View.GONE
-            playerCard3View.visibility = View.GONE
+            allPlayerCardsGone()
 
             if (score >= 20) {
                 startNextLvlActivity()
@@ -191,21 +167,6 @@ class LvlTwoActivity : LvlParentActivity() {
                 reload()
             }
 
-
-            /*
-            if (hiOrLow == 1) {
-
-                lowerView.setImageResource(rightAnswerImageId)
-                lowerView.setBackgroundResource(R.drawable.roundedcorner)
-
-            } else if (hiOrLow == 2) {
-
-                higherView.setImageResource(rightAnswerImageId)
-                higherView.setBackgroundResource(R.drawable.roundedcorner)
-
-            }
-
-             */
 
 
         } else if (score > 7) {
@@ -234,10 +195,7 @@ class LvlTwoActivity : LvlParentActivity() {
             scoreTextView.text = "$score"
 
             playRightAnswerSound()
-
-            view.visibility = View.GONE
-            playerCard1View.visibility = View.GONE
-            playerCard2View.visibility = View.GONE
+            allPlayerCardsGone()
 
             if (score >= 20) {
                 startNextLvlActivity()
@@ -264,18 +222,10 @@ class LvlTwoActivity : LvlParentActivity() {
 
     }
 
-    fun reload() {
+    private fun reload() {
 
-        lowerView.visibility = View.GONE
-        lowerView.setImageResource(R.drawable.blankbgcolor)
-        lowerView.setBackgroundResource(R.drawable.faded)
-        higherView.visibility = View.GONE
-        higherView.setImageResource(R.drawable.blankbgcolor)
-        higherView.setBackgroundResource(R.drawable.faded)
-
-        playerCard1View.visibility = View.VISIBLE
-        playerCard2View.visibility = View.VISIBLE
-        playerCard3View.visibility = View.VISIBLE
+        hiLowViewsInvisible()
+        allPlayerCardsVisible()
 
         mainNrView.setImageResource(setImage(listOfcards))
 

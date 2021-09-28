@@ -19,6 +19,7 @@ open class LvlParentActivity : AppCompatActivity() {
     var score = 0
     var rightAnswerCard = 0     // Håller reda på vilket kort som är rätt
     var rightAnswerImageId = 0  // Sparar imageId för rätta svaret för att återanvända kortet
+    var howManyPlayerCards = 3  // Håller reda på hur många PlayerCardViews det är för att funktionerna visible och invisible ska bli rätt. default är 3 eftersom det är vanligast.
 
 
     val card1 = Card(1, R.drawable.one)
@@ -84,36 +85,6 @@ open class LvlParentActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-/*
-
-
-        // Binder ihop mina view variabler med mina views.
-        mainNrView = findViewById(R.id.mainNrView)
-        scoreTextView = findViewById(R.id.scoreView)
-        hiOrLowTextView = findViewById(R.id.hiLowTextView)
-        playerCard1View = findViewById(R.id.playerCard1)
-        playerCard2View = findViewById(R.id.playerCard3)
-        lowerView = findViewById(R.id.lowerView)
-        higherView = findViewById(R.id.higherView)
-
-        lowerView.visibility = View.GONE
-        higherView.visibility = View.GONE
-
-        score = intent.getIntExtra("score", 0)
-
-        scoreTextView.text = "$score"
-
-        mainNrView.setImageResource(setImage(listOfcards))      //Skapar random siffra/kort i mainNr
-
-
-        hiOrLowTextView.text =
-            hiOrLow()                        //Bestämmer om man ska lägga högre eller lägre.
-
-
-        randomPlayerCard(listOfcards)       // Genererar rätt och fel svar till random playerCard
-
-
- */
 
     }
 
@@ -138,11 +109,11 @@ open class LvlParentActivity : AppCompatActivity() {
         val string: String
         if (hiOrLow == 1) {
 
-            string = getString(R.string.lower)                                                                    // Fixa så den pekar på strängen i XML filen
+            string = getString(R.string.lower)
             lowerView.visibility = View.VISIBLE
 
         } else if (hiOrLow == 2) {
-            string = getString(R.string.higher)                                                                     // Fixa så den pekar på strängen i XML filen
+            string = getString(R.string.higher)
             higherView.visibility = View.VISIBLE
 
         } else {
@@ -151,6 +122,38 @@ open class LvlParentActivity : AppCompatActivity() {
         return string
     }
 
+    // Visibility funktioner
+
+    fun allPlayerCardsVisible() {
+
+        if (howManyPlayerCards == 2) {
+            playerCard1View.visibility = View.VISIBLE
+            playerCard2View.visibility = View.VISIBLE
+        } else {
+            playerCard1View.visibility = View.VISIBLE
+            playerCard2View.visibility = View.VISIBLE
+            playerCard3View.visibility = View.VISIBLE
+        }
+
+    }
+
+    fun allPlayerCardsGone() {
+
+        if (howManyPlayerCards == 2) {
+            playerCard1View.visibility = View.GONE
+            playerCard2View.visibility = View.GONE
+        } else {
+            playerCard1View.visibility = View.GONE
+            playerCard2View.visibility = View.GONE
+            playerCard3View.visibility = View.GONE
+
+        }
+    }
+
+    fun hiLowViewsInvisible() {
+        lowerView.visibility = View.GONE
+        higherView.visibility = View.GONE
+    }
 
 // Övriga funktioner:
 
@@ -162,6 +165,7 @@ open class LvlParentActivity : AppCompatActivity() {
         var mediaPlayer = MediaPlayer.create(this, R.raw.ra)
         mediaPlayer.start()
     }
+
 
 
 
