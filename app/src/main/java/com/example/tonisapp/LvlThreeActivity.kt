@@ -1,11 +1,8 @@
 package com.example.tonisapp
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.ImageView
-import android.widget.TextView
 
 class LvlThreeActivity :  LvlParentActivity() {
 
@@ -88,9 +85,6 @@ class LvlThreeActivity :  LvlParentActivity() {
             playerCard2View.setImageResource(cardList[wrongNr - 1].imageId)
             playerCard3View.setImageResource(cardList[wrongNr2 - 1].imageId)
 
-            rightAnswerImageId =
-                cardList[rightNr - 1].imageId
-
             rightAnswerCard = 1
 
 
@@ -99,18 +93,12 @@ class LvlThreeActivity :  LvlParentActivity() {
             playerCard2View.setImageResource(cardList[rightNr - 1].imageId)
             playerCard3View.setImageResource(cardList[wrongNr2 - 1].imageId)
 
-            rightAnswerImageId =
-                cardList[rightNr - 1].imageId
-
             rightAnswerCard = 2
 
         } else if (placement == 3) {
             playerCard1View.setImageResource(cardList[wrongNr - 1].imageId)
             playerCard2View.setImageResource(cardList[wrongNr2 - 1].imageId)
             playerCard3View.setImageResource(cardList[rightNr - 1].imageId)
-
-            rightAnswerImageId =
-                cardList[rightNr - 1].imageId
 
             rightAnswerCard = 3
         }

@@ -1,12 +1,9 @@
 package com.example.tonisapp
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
-import android.widget.ImageView
-import android.widget.TextView
 
 open class MainActivity : LvlParentActivity() {             // LVL ett activity!!
 
@@ -57,8 +54,7 @@ open class MainActivity : LvlParentActivity() {             // LVL ett activity!
     private fun randomPlayerCard(cardList: MutableList<Card>) {
         val placement = random1or2()
 
-        val lowerNr =
-            mainNr - 1     // Skapade dessa variabler då något blev fel när jag skrev mmain -1
+        val lowerNr = mainNr - 1     // Skapade dessa variabler då något blev fel när jag skrev mmain -1
         val higherNr = mainNr + 1
 
         if (hiOrLow == 1) {
@@ -77,18 +73,12 @@ open class MainActivity : LvlParentActivity() {             // LVL ett activity!
             playerCard1View.setImageResource(cardList[rightNr - 1].imageId)
             playerCard2View.setImageResource(cardList[wrongNr - 1].imageId)
 
-            rightAnswerImageId =
-                cardList[rightNr - 1].imageId       // Sparar imageId för senare använding
-
             rightAnswerCard = 1
 
 
         } else if (placement == 2) {
             playerCard1View.setImageResource(cardList[wrongNr - 1].imageId)
             playerCard2View.setImageResource(cardList[rightNr - 1].imageId)
-
-            rightAnswerImageId =
-                cardList[rightNr - 1].imageId       // Sparar imageId för senare använding
 
             rightAnswerCard = 2
 

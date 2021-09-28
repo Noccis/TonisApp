@@ -1,6 +1,5 @@
 package com.example.tonisapp
 
-import android.content.Intent
 import android.media.MediaPlayer
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -18,7 +17,6 @@ open class LvlParentActivity : AppCompatActivity() {
     var wrongNr2 = 0
     var score = 0
     var rightAnswerCard = 0     // Håller reda på vilket kort som är rätt
-    var rightAnswerImageId = 0  // Sparar imageId för rätta svaret för att återanvända kortet
     var howManyPlayerCards = 3  // Håller reda på hur många PlayerCardViews det är för att funktionerna visible och invisible ska bli rätt. default är 3 eftersom det är vanligast.
 
 

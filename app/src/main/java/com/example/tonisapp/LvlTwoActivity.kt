@@ -1,11 +1,9 @@
 package com.example.tonisapp
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.ImageView
-import android.widget.TextView
+
 
 class LvlTwoActivity : LvlParentActivity() {
 
@@ -39,12 +37,10 @@ class LvlTwoActivity : LvlParentActivity() {
     }
 
 
-
-   private fun randomPlayerCard(cardList: MutableList<Card>) {
+    private fun randomPlayerCard(cardList: MutableList<Card>) {
         val placement = (1..3).random()
 
-        val lowerNr =
-            mainNr - 1
+        val lowerNr = mainNr - 1
         val higherNr = mainNr + 1
 
         if (hiOrLow == 1) {
@@ -89,9 +85,6 @@ class LvlTwoActivity : LvlParentActivity() {
             playerCard2View.setImageResource(cardList[wrongNr - 1].imageId)
             playerCard3View.setImageResource(cardList[wrongNr2 - 1].imageId)
 
-            rightAnswerImageId =
-                cardList[rightNr - 1].imageId
-
             rightAnswerCard = 1
 
 
@@ -100,18 +93,12 @@ class LvlTwoActivity : LvlParentActivity() {
             playerCard2View.setImageResource(cardList[rightNr - 1].imageId)
             playerCard3View.setImageResource(cardList[wrongNr2 - 1].imageId)
 
-            rightAnswerImageId =
-                cardList[rightNr - 1].imageId
-
             rightAnswerCard = 2
 
         } else if (placement == 3) {
             playerCard1View.setImageResource(cardList[wrongNr - 1].imageId)
             playerCard2View.setImageResource(cardList[wrongNr2 - 1].imageId)
             playerCard3View.setImageResource(cardList[rightNr - 1].imageId)
-
-            rightAnswerImageId =
-                cardList[rightNr - 1].imageId
 
             rightAnswerCard = 3
         }
@@ -133,7 +120,6 @@ class LvlTwoActivity : LvlParentActivity() {
             } else {
                 reload()
             }
-
 
 
         } else if (score > 7) {
@@ -166,7 +152,6 @@ class LvlTwoActivity : LvlParentActivity() {
             } else {
                 reload()
             }
-
 
 
         } else if (score > 7) {
@@ -202,7 +187,6 @@ class LvlTwoActivity : LvlParentActivity() {
             } else {
                 reload()
             }
-
 
 
         } else if (score > 7) {
