@@ -246,21 +246,6 @@ class LvlTwoActivity : LvlParentActivity() {
             }
 
 
-            /*
-            if (hiOrLow == 1) {
-
-                lowerView.setImageResource(rightAnswerImageId)
-                lowerView.setBackgroundResource(R.drawable.roundedcorner)
-
-            } else if (hiOrLow == 2) {
-
-                higherView.setImageResource(rightAnswerImageId)
-                higherView.setBackgroundResource(R.drawable.roundedcorner)
-
-            }
-
-             */
-
 
         } else if (score > 7) {
             score--

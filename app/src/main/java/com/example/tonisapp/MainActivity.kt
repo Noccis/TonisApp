@@ -41,6 +41,8 @@ open class MainActivity : LvlParentActivity() {             // LVL ett activity!
 
         randomPlayerCard(listOfcards)       // Genererar rätt och fel svar till random playerCard
 
+        // Ta bort på TORSDAG! Ta även bort dom i XML. Todo
+
         val lvl2Button = findViewById<Button>(R.id.lvl2Button)
         val lvl3Button = findViewById<Button>(R.id.lvl3Button)
         val winButton = findViewById<Button>(R.id.winButton)
@@ -156,21 +158,6 @@ open class MainActivity : LvlParentActivity() {             // LVL ett activity!
                 reload()
             }
 
-/*
-            if (hiOrLow == 1 ) {
-
-                lowerView.setImageResource(rightAnswerImageId)
-                lowerView.setBackgroundResource(R.drawable.roundedcorner)
-
-            }
-            else if (hiOrLow == 2) {
-
-                higherView.setImageResource(rightAnswerImageId)
-                higherView.setBackgroundResource(R.drawable.roundedcorner)
-
-            }
-
- */
 
         } else if (score > 0) {
             score--
@@ -215,6 +202,8 @@ open class MainActivity : LvlParentActivity() {             // LVL ett activity!
         intent.putExtra("score", score)
         startActivity(intent)
     }
+
+    // Funktioner som jag ska ta bort på torsdag! Todo
 
      fun startLvl2Activity(view: View) {
 
