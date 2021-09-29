@@ -4,9 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 
-class LvlThreeActivity :  LvlParentActivity() {
-
-    // View variabler:
+class LvlThreeActivity : LvlParentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,7 +21,7 @@ class LvlThreeActivity :  LvlParentActivity() {
         lowerView = findViewById(R.id.lowerView)
         higherView = findViewById(R.id.higherView)
 
-       hiLowViewsInvisible()
+        hiLowViewsInvisible()
 
         scoreTextView.text = "$score"
 
@@ -35,19 +33,18 @@ class LvlThreeActivity :  LvlParentActivity() {
     }
 
 
-
     private fun randomPlayerCard(cardList: MutableList<Card>) {
+
         val placement = (1..3).random()
 
-        val lowerNr =
-            mainNr - 1
+        val lowerNr = mainNr - 1
         val higherNr = mainNr + 1
 
         if (hiOrLow == 1) {
 
             rightNr = (1..lowerNr).random()
-            wrongNr = (higherNr..19).random()
-            wrongNr2 = (higherNr..19).random()
+            wrongNr = (higherNr..20).random()
+            wrongNr2 = (higherNr..20).random()
 
             if (mainNr < 19) {
 
@@ -55,7 +52,7 @@ class LvlThreeActivity :  LvlParentActivity() {
 
                     if (wrongNr == wrongNr2) {
 
-                        wrongNr2 = (higherNr..19).random()
+                        wrongNr2 = (higherNr..20).random()
                     }
                 }
             }
@@ -116,22 +113,25 @@ class LvlThreeActivity :  LvlParentActivity() {
             allPlayerCardsGone()
 
             if (score >= 30) {
+
                 startNextLvlActivity()
+
             } else {
+
                 reload()
             }
 
 
-
         } else if (score > 17) {
             score--
-            scoreTextView.text = "$score"       // Varför uppdateras inte detta automatiskt?
-
+            scoreTextView.text = "$score"
             view.visibility = View.INVISIBLE
+
         } else if (score <= 17) {
 
             score--
             returnToLvl2()
+
         } else {
             view.visibility = View.INVISIBLE
         }
@@ -150,8 +150,11 @@ class LvlThreeActivity :  LvlParentActivity() {
             allPlayerCardsGone()
 
             if (score >= 30) {
+
                 startNextLvlActivity()
+
             } else {
+
                 reload()
             }
 
@@ -159,8 +162,8 @@ class LvlThreeActivity :  LvlParentActivity() {
         } else if (score > 17) {
             score--
             scoreTextView.text = "$score"       // Varför uppdateras inte detta automatiskt?
-
             view.visibility = View.INVISIBLE
+
         } else if (score <= 17) {
 
             score--
@@ -177,7 +180,6 @@ class LvlThreeActivity :  LvlParentActivity() {
 
     fun answeringCard3(view: View) {
 
-
         if (rightAnswerCard == 3) {
             score++
             scoreTextView.text = "$score"
@@ -186,8 +188,11 @@ class LvlThreeActivity :  LvlParentActivity() {
             allPlayerCardsGone()
 
             if (score >= 30) {
+
                 startNextLvlActivity()
+
             } else {
+
                 reload()
             }
 
@@ -195,12 +200,13 @@ class LvlThreeActivity :  LvlParentActivity() {
         } else if (score > 17) {
             score--
             scoreTextView.text = "$score"       // Varför uppdateras inte detta automatiskt?
-
             view.visibility = View.INVISIBLE
+
         } else if (score <= 17) {
 
             score--
             returnToLvl2()
+            
         } else {
 
             view.visibility = View.INVISIBLE

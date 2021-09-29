@@ -7,9 +7,6 @@ import android.view.View
 
 class LvlTwoActivity : LvlParentActivity() {
 
-    // View variabler:
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_lvl_two)
@@ -25,7 +22,7 @@ class LvlTwoActivity : LvlParentActivity() {
         lowerView = findViewById(R.id.lowerView)
         higherView = findViewById(R.id.higherView)
 
-        hiLowViewsInvisible()
+        hiLowViewsInvisible()           // Gömmer higher och lower views.
 
         scoreTextView.text = "$score"
 
@@ -123,13 +120,15 @@ class LvlTwoActivity : LvlParentActivity() {
 
 
         } else if (score > 7) {
+
             score--
-            scoreTextView.text = "$score"       // Varför uppdateras inte detta automatiskt?
-
+            scoreTextView.text = "$score"
             view.visibility = View.INVISIBLE
-        } else if (score <= 7) {
 
+        } else if (score <= 7) {
+            score --
             returnToMainActivity()
+
         } else {
             view.visibility = View.INVISIBLE
         }
@@ -148,21 +147,25 @@ class LvlTwoActivity : LvlParentActivity() {
             allPlayerCardsGone()
 
             if (score >= 20) {
+
                 startNextLvlActivity()
+
             } else {
+
                 reload()
             }
 
 
         } else if (score > 7) {
+
             score--
             scoreTextView.text = "$score"       // Varför uppdateras inte detta automatiskt?
-
             view.visibility = View.INVISIBLE
+
         } else if (score <= 7) {
 
+            score --
             returnToMainActivity()
-
 
         } else {
 
@@ -183,21 +186,26 @@ class LvlTwoActivity : LvlParentActivity() {
             allPlayerCardsGone()
 
             if (score >= 20) {
+
                 startNextLvlActivity()
+
             } else {
+
                 reload()
             }
 
 
         } else if (score > 7) {
+
             score--
             scoreTextView.text = "$score"       // Varför uppdateras inte detta automatiskt?
-
             view.visibility = View.INVISIBLE
+
         } else if (score <= 7) {
 
             score--
             returnToMainActivity()
+
         } else {
 
             view.visibility = View.INVISIBLE

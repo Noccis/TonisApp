@@ -5,14 +5,14 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 
-open class MainActivity : LvlParentActivity() {             // LVL ett activity!!
+open class MainActivity : LvlParentActivity() {             // Lvl ett activity!!
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        howManyPlayerCards = 2                      // Ska den här vara innan on create?
+        howManyPlayerCards = 2
 
         // Binder ihop mina view variabler med mina views.
         mainNrView = findViewById(R.id.mainNrView)
@@ -25,7 +25,7 @@ open class MainActivity : LvlParentActivity() {             // LVL ett activity!
 
         hiLowViewsInvisible()
 
-        score = intent.getIntExtra("score", 0)
+        score = intent.getIntExtra("score", 0)      // Denna är en intent för att ifall man hoppar tillbaka från lvl 2 ska man få med sig score.
 
         scoreTextView.text = "$score"
 
@@ -50,11 +50,10 @@ open class MainActivity : LvlParentActivity() {             // LVL ett activity!
 
     // Player card funktioner:
 
-
     private fun randomPlayerCard(cardList: MutableList<Card>) {
-        val placement = random1or2()
 
-        val lowerNr = mainNr - 1     // Skapade dessa variabler då något blev fel när jag skrev mmain -1
+        val placement = random1or2()
+        val lowerNr = mainNr - 1     // Skapade dessa variabler då något blev fel när jag skrev main -1
         val higherNr = mainNr + 1
 
         if (hiOrLow == 1) {
@@ -87,7 +86,6 @@ open class MainActivity : LvlParentActivity() {             // LVL ett activity!
 
     // Svar funktioner:
 
-
     fun answeringCard1(view: View) {
 
         if (rightAnswerCard == 1) {
@@ -104,7 +102,7 @@ open class MainActivity : LvlParentActivity() {             // LVL ett activity!
 
         } else if (score > 0) {
             score--
-            scoreTextView.text = "$score"       // Varför uppdateras inte detta automatiskt?
+            scoreTextView.text = "$score"
 
             view.visibility = View.INVISIBLE
         } else {

@@ -160,7 +160,7 @@ open class LvlParentActivity : AppCompatActivity() {
     }
 
     fun playRightAnswerSound() {
-        var mediaPlayer = MediaPlayer.create(this, R.raw.ra)
+        val mediaPlayer = MediaPlayer.create(this, R.raw.ra)
         mediaPlayer.start()
     }
 
