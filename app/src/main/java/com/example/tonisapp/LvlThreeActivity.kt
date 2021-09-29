@@ -184,7 +184,7 @@ class LvlThreeActivity : LvlParentActivity() {
             score++
             scoreTextView.text = "$score"
 
-            playRightAnswerSound()
+
             allPlayerCardsGone()
 
             if (score >= 30) {
@@ -193,20 +193,21 @@ class LvlThreeActivity : LvlParentActivity() {
 
             } else {
 
+                playRightAnswerSound()      // Flyttade den hit för att inte spela upp båda ljudfilerna.
                 reload()
             }
 
 
         } else if (score > 17) {
             score--
-            scoreTextView.text = "$score"       // Varför uppdateras inte detta automatiskt?
+            scoreTextView.text = "$score"
             view.visibility = View.INVISIBLE
 
         } else if (score <= 17) {
 
             score--
             returnToLvl2()
-            
+
         } else {
 
             view.visibility = View.INVISIBLE
