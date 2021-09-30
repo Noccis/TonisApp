@@ -37,13 +37,7 @@ open class MainActivity : LvlParentActivity() {             // Lvl ett activity!
 
 
         randomPlayerCard(listOfcards)       // Genererar rätt och fel svar till random playerCard
-
-        // Ta bort på TORSDAG! Ta även bort dom i XML. Todo
-
-        val lvl2Button = findViewById<Button>(R.id.lvl2Button)
-        val lvl3Button = findViewById<Button>(R.id.lvl3Button)
-        val winButton = findViewById<Button>(R.id.winButton)
-
+        
 
     }
 
@@ -166,29 +160,6 @@ open class MainActivity : LvlParentActivity() {             // Lvl ett activity!
         startActivity(intent)
     }
 
-    // Funktioner som jag ska ta bort på torsdag! Todo
-
-    fun startLvl2Activity(view: View) {
-        val intent = Intent(this, LvlTwoActivity::class.java)
-        score = 18
-        intent.putExtra("score", score)
-        startActivity(intent)
-
-    }
-
-    fun startLvl3Activity(view: View) {
-
-        val intent = Intent(this, LvlThreeActivity::class.java)
-        score = 22
-        intent.putExtra("score", score)
-        startActivity(intent)
-    }
-
-    fun startWinActivity(view: View) {
-
-        val intent = Intent(this, WinActivity::class.java)
-        startActivity(intent)
-    }
 
 }
 
